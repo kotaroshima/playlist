@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+BODY {
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  color: #999999;
+  padding: 0 150px; }
+
+H1.title {
+  text-align: center; }
+
+A {
+  text-decoration: none; }
+  A:hover {
+    text-decoration: underline; }
+
+#addTaskContainer {
+  text-align: right;
+  padding-right: 15px; }
+
+.itemView {
+  display: table;
+  height: 32px;
+  width: 100%;
+  padding: 6px; }
+  .itemView:hover {
+    background-color: #FFEFC6;
+    color: #735005;
+    -moz-border-radius: 6px;
+    border-radius: 6px; }
+  .itemView > * {
+    display: table-cell;
+    vertical-align: middle; }
+  .itemView .taskText {
+    padding-left: 20px; }
+  .itemView .createdAt {
+    width: 200px; }
+  .itemView .itemActions {
+    float: right;
+    padding-right: 5px; }
+    .itemView .itemActions BUTTON {
+      display: none; }
+  .itemView:hover .itemActions BUTTON {
+    display: inline;
+    width: 60px;
+    height: 32px;
+    background-color: green;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    color: white;
+    border: 0; }
