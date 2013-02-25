@@ -12,6 +12,7 @@ ToDo list application that uses localStorage
     jQueryUI: ['http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min'],
     Underscore: ['http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min'],
     Backbone: ['http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.9/backbone-min'],
+    SoundCloud: ['http://connect.soundcloud.com/sdk'],
     'Backbone.localStorage': ['http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min']
   };
 
@@ -33,6 +34,9 @@ ToDo list application that uses localStorage
       deps: ['Underscore', 'jQuery'],
       exports: 'Backbone'
     },
+    SoundCloud: {
+      exports: 'SC'
+    },
     'Backbone.localStorage': {
       deps: ['Backbone'],
       exports: 'Backbone'
@@ -42,8 +46,8 @@ ToDo list application that uses localStorage
   requirejs.config({ paths: paths, shim: shim });
 
   define(
-    ['jQueryUI', 'Underscore', 'ListCollection', 'SongListView', 'PlayListContainerView'],
-    function($, _, ListCollection, SongListView, PlayListContainerView){
+    ['jQueryUI', 'Underscore', 'ListCollection', 'SongListView', 'PlayListContainerView', 'SoundCloud'],
+    function($, _, ListCollection, SongListView, PlayListContainerView, SC){
       var pubsub = window.pubsub = _.extend({}, Backbone.Events);
 
       $('#showPlayListButton').on('click', function(){
@@ -53,7 +57,19 @@ ToDo list application that uses localStorage
       var collection = new ListCollection();
       new SongListView({ collection: collection });
 //      collection.load();
-      // dummy data
+      // initialize client with app credentials
+      SC.initialize({
+        client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
+        redirect_uri: 'http://kotaroshima.github.com/playlist/WebContent/callback.html'
+      });
+
+   // initiate auth popup
+      SC.connect(function(){
+        SC.get('/me/tracks', function(me) { 
+          alert('Hello, ' + me.username); 
+        });
+      });
+
       collection.add([
         { name: 'hoge' },
         { name: 'fuga' },
