@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+
+@mixin round-corner($r) {
+  -moz-border-radius: $r;
+  border-radius: $r;
+}
+
+BODY {
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  color: #999999;
+  padding: 0 150px;
+}
+
+H1.title {
+  text-align: center;
+}
+
+A {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+#addTaskContainer {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.itemView {
+  display: table;
+  height: 32px;
+  width: 100%;
+  padding: 6px;
+
+  &:hover {
+    background-color: #FFEFC6;
+    color: #735005;
+    @include round-corner(6px);
+  }
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .taskText {
+    padding-left: 20px;
+  }
+
+  .createdAt {
+    width: 200px;
+  }
+
+  .itemActions {
+    float: right;
+    padding-right: 5px;
+
+    BUTTON {
+      display: none;
+    }
+  }
+
+  &:hover .itemActions BUTTON {
+    display: inline;
+    width: 60px;
+    height: 32px;
+    background-color: green;
+    @include round-corner(6px);
+    color: white;
+    border: 0;
+  }
+}
