@@ -43,19 +43,21 @@ define(
       var url = model.get("uri");
       console.debug("Play "+url);
       if(!this._playerInit){
-/*      SC.stream(url, function(sound){
-        console.log("sound:" +sound.toString());
-        sound.play();
-      });*/
-        SC.oEmbed(url, {auto_play: true}, this.domNode);
+        // embed player widget
         var self = this;
-        SC.Widget.bind(SC.Widget.Events.FINISH, function(){
-          console.debug("SC.Widget.Events.FINISH");
-          pubsub.trigger("SONG_FINISHED");
+        SC.oEmbed(url, {auto_play: true}, function(response){
+          self.domNode.innerHTML = response.html;
+
+          // connect to 'SC.Widget.Events.FINISH' to notify to play next song
+          var widget = self._widget = SC.Widget($('#embedContainer IFRAME').get(0));
+          widget.bind(SC.Widget.Events.FINISH, function(){
+            console.debug("SC.Widget.Events.FINISH");
+            pubsub.trigger("SONG_FINISHED");
+          });
+          self._playerInit = true;
         });
-        this._playerInit = true;
       }else{
-        SC.Widget.load(url);
+        this._widget.load(url, {auto_play: true});
       }
     };
 
