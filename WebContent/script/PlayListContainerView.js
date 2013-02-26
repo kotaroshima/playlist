@@ -13,14 +13,8 @@ define(
         this.render();
 
         var collection = new ListCollection();
-        new PlayListView({ collection: collection });
-
-        // TODO : dummy data
-        collection.add([
-          { name: 'abc' },
-          { name: 'xyz' },
-          { name: '123' }
-        ]);
+        var view = new PlayListView({ collection: collection });
+        view.render();
 
         pubsub.on("SHOW_PLAY_LIST", this.open, this);
         pubsub.on("ADD_PLAY_LIST_ITEM", collection.add, collection);
@@ -33,10 +27,8 @@ define(
         this.$el.dialog({
           autoOpen: false,
           title: 'Play Lists',
-//          width: $(window).width(),
-//          height: $(window).height()
-          width: 600,
-          height: 600
+          width: $(window).width(),
+          height: $(window).height()
         });
 
         return this;
