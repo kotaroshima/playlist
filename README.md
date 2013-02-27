@@ -1,6 +1,6 @@
 SoundCloud Play List Application
 ======================
-A SoundCloud play list application which allows you to searches, plays, manages play list of songs in SoundCloud.
+A SoundCloud play list application which allows you to search, play, manage play list of songs in SoundCloud.
 It has 2 pages with the following functionalities:
 * Search result page.
  * When first opened, it shows default result having the highest 'hotness'
