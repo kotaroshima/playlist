@@ -1,14 +1,11 @@
+/*
+ * A subclass of Backbone.Collection so that ListModel is used instead of simple model
+ */
 define(
-  ['Backbone', 'ListModel'],
-  function(Backbone, ListModel){
+  ['ListModel'],
+  function(ListModel){
     return Backbone.Collection.extend({
-      model: ListModel,
-
-      move: function(origIndex, newIndex){
-        var model = this.at(origIndex);
-        this.remove(model);
-        this.add(model, { at: newIndex });
-      }
+      model: ListModel
     });
   }
 );

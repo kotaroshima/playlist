@@ -1,3 +1,6 @@
+/*
+ * A base view supporting templates
+ */
 define(
   ['jQuery', 'Underscore', 'Backbone', 'text!template/ItemView.html'],
   function($, _, Backbone, viewTemplate){

@@ -5,10 +5,13 @@
   border-radius: $r;
 }
 
-BODY {
+@mixin default-font {
   font-family: Verdana,Arial,Helvetica,sans-serif;
-  color: #999999;
-  padding: 0 150px;
+}
+
+BODY {
+  @include default-font;
+  padding: 0 10px;
 }
 
 H1.title {
@@ -17,6 +20,7 @@ H1.title {
 
 A {
   text-decoration: none;
+  color: #222222;
 
   &:hover {
     text-decoration: underline;
@@ -28,47 +32,65 @@ A {
   padding-right: 15px;
 }
 
-.itemView {
+.item-view {
   display: table;
   height: 32px;
   width: 100%;
   padding: 6px;
-
-  &:hover {
-    background-color: #FFEFC6;
-    color: #735005;
-    @include round-corner(6px);
-  }
 
   > * {
     display: table-cell;
     vertical-align: middle;
   }
 
-  .taskText {
-    padding-left: 20px;
+  .user-name {
+    color: #999;
   }
 
-  .createdAt {
-    width: 200px;
-  }
-
-  .itemActions {
-    float: right;
+  .item-actions {
     padding-right: 5px;
 
     BUTTON {
-      display: none;
+      display: inline;
+      width: 60px;
+      height: 32px;
+      background-color: green;
+      @include round-corner(6px);
+      color: white;
+      border: 0;
     }
   }
+}
 
-  &:hover .itemActions BUTTON {
-    display: inline;
-    width: 60px;
-    height: 32px;
-    background-color: green;
-    @include round-corner(6px);
-    color: white;
-    border: 0;
+.now-playing-text {
+  display: none;
+}
+
+.now-playing {
+  background-color: #FFEFC6;
+  color: #735005;
+  @include round-corner(6px);
+
+  .now-playing-text {
+    display: block;
+    font-style: italic;
+    font-weight: bold;
+    color: blue;
+  }
+}
+
+.playListAdded .item-actions BUTTON.addBtn {
+  background-color: gray;
+}
+
+#playListApp .ui-dialog-titlebar {
+  display: none;
+}
+
+/* override jQuery UI styles */
+#playListApp .ui-widget #playListContainerView {
+  input, select, textarea, button {
+    @include default-font;
+    font-size: medium;
   }
 }
