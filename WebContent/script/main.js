@@ -49,7 +49,7 @@
       var pubsub = window.pubsub = _.extend({}, Backbone.Events);
 
       $('#showPlayListButton').on('click', function(){
-        pubsub.trigger("SHOW_PLAY_LIST");
+        pubsub.trigger("SHOW_PLAYLIST");
       });
 
       var collection = new ListCollection();

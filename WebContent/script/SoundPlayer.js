@@ -13,6 +13,9 @@ define(
       this.initialize();
     }
 
+    /*
+     * Constructor
+     */
     SoundPlayer.prototype.initialize = function(){
       // initialize client with app credentials
       SC.initialize({
@@ -30,6 +33,9 @@ define(
       return instance;
     };
 
+    /*
+     * Initialization
+     */
     SoundPlayer.prototype.setup = function(callback){
       // by default, show tracks ordered by 'hotness'
       SC.get('/tracks',
@@ -38,10 +44,12 @@ define(
       );
     };
 
+    /*
+     * Plays sound
+     */
     SoundPlayer.prototype.play = function(model){
       pubsub.trigger("SONG_START", model);
       var url = model.get("uri");
-      console.debug("Play "+url);
       if(!this._playerInit){
         // embed player widget
         var self = this;
@@ -51,16 +59,21 @@ define(
           // connect to 'SC.Widget.Events.FINISH' to notify to play next song
           var widget = self._widget = SC.Widget($('#embedContainer IFRAME').get(0));
           widget.bind(SC.Widget.Events.FINISH, function(){
-            console.debug("SC.Widget.Events.FINISH");
             pubsub.trigger("SONG_FINISHED");
           });
           self._playerInit = true;
+          widget.play(); // call play explicitly, because somehow 'auto_play' didn't work in iPhone
         });
       }else{
+        // already embedded to updates url and plays
         this._widget.load(url, {auto_play: true});
+        this._widget.play(); // call play explicitly, because somehow 'auto_play' didn't work in iPhone
       }
     };
 
+    /*
+     * Searches for songs with a keyword
+     */
     SoundPlayer.prototype.search = function(searchString, callback){
       SC.get('/tracks', { q: searchString }, callback);
     };

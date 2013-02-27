@@ -1,6 +1,12 @@
+/*
+ * A view which contains:
+ * - play list view
+ * - back to song list button
+ * It is implemented as a dialog
+ */
 define(
-  ['jQuery', 'Underscore', 'Backbone', 'ListCollection', 'PlayListView', 'text!template/PlayListContainerView.html'],
-  function($, _, Backbone, ListCollection, PlayListView, viewTemplate){
+  ['jQuery', 'Underscore', 'Backbone', 'PlayListCollection', 'PlayListView', 'text!template/PlayListContainerView.html'],
+  function($, _, Backbone, PlayListCollection, PlayListView, viewTemplate){
     return Backbone.View.extend({
       el: "#playListContainerView",
       template: _.template(viewTemplate),
@@ -12,13 +18,11 @@ define(
       initialize: function(){
         this.render();
 
-        var collection = new ListCollection();
+        var collection = new PlayListCollection();
         var view = new PlayListView({ collection: collection });
         view.render();
 
-        pubsub.on("SHOW_PLAY_LIST", this.open, this);
-        pubsub.on("ADD_PLAY_LIST_ITEM", collection.add, collection);
-        pubsub.on("MOVE_PLAY_LIST_ITEM", collection.move, collection);
+        pubsub.on("SHOW_PLAYLIST", this.open, this);
       },
 
       render: function(){
@@ -26,7 +30,6 @@ define(
 
         this.$el.dialog({
           autoOpen: false,
-          title: 'Play Lists',
           width: $(window).width(),
           height: $(window).height()
         });
@@ -40,6 +43,11 @@ define(
 
       close: function(){
         this.$el.dialog('close');
+      },
+
+      destroy: function(){
+        pubsub.off("SHOW_PLAYLIST", this.open, this);
+        Backbone.View.prototype.destroy.call(this);
       }
     });
   }
