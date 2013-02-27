@@ -19,15 +19,16 @@ define(
           if(isPlay){
             if(self.index === -1){
               // no song is playing, so insert to the front of the play list
-              self.setIndex(0);
               options = { at: 0 };
             }else{
               // currently some song is playing, so insert to after the currently playing song
-              self.setIndex(self.index+1);
-              options = { at: self.index };
+              options = { at: self.index+1 };
             }
           }
           self.add(model, options);
+          if(options){
+            self.setIndex(options.at);
+          }
         });
 
         // if current item gets removed, update index
