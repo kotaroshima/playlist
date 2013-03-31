@@ -66,7 +66,12 @@
       el: '#songListView',
       itemClass: SongItemView
     });
-    new PlayListContainerView();
+    new PlayListContainerView({
+      el: "#playListContainerView",
+      subscribers: {
+        SHOW_PLAYLIST: 'open'
+      }
+    });
     player.setup(function(tracks) {
       collection.reset(tracks);
     });

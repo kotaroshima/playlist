@@ -3,10 +3,9 @@
 # - back to song list button
 # It is implemented as a dialog
 define(
-  ['jQuery', 'Underscore', 'Backbone', 'ListModel', 'PlayListCollection', 'backpack/components/ListView', 'PlayItemView', 'backpack/plugins/Sortable', 'text!template/PlayListContainerView.html'],
-  ($, _, Backbone, ListModel, PlayListCollection, ListView, PlayItemView, Sortable, viewTemplate)->
-    Backbone.View.extend
-      el: "#playListContainerView"
+  ['jQuery', 'Underscore', 'Backpack', 'ListModel', 'PlayListCollection', 'backpack/components/ListView', 'PlayItemView', 'backpack/plugins/Sortable', 'text!template/PlayListContainerView.html'],
+  ($, _, Backpack, ListModel, PlayListCollection, ListView, PlayItemView, Sortable, viewTemplate)->
+    Backpack.View.extend
       template: _.template viewTemplate
 
       events:
@@ -34,17 +33,15 @@ define(
               view.$el.addClass 'now-playing'
             return
         view.render()
-        Backbone.on "SHOW_PLAYLIST", @open, @
         return
 
       render:->
         @$el.html @template()
 
-        @$el.dialog(
+        @$el.dialog
           autoOpen: false
           width: $(window).width()
           height: $(window).height()
-        )
         @
 
       open:->
@@ -53,10 +50,5 @@ define(
 
       close:->
         @$el.dialog 'close'
-        return
-
-      destroy:->
-        Backbone.off "SHOW_PLAYLIST", @open, @
-        Backbone.View::destroy.call @
         return
 )

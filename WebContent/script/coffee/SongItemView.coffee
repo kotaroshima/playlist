@@ -1,13 +1,18 @@
 # A view for each songs in the main page
 define(
-  ['Underscore', 'ItemView', 'text!template/SongItemView.html', 'SoundPlayer'],
-  (_, ItemView, viewTemplate, player)->
-    ItemView.extend
+  ['Underscore', 'Backpack', 'text!template/SongItemView.html', 'SoundPlayer'],
+  (_, Backpack, viewTemplate, player)->
+    Backpack.View.extend
       template: _.template viewTemplate
 
       events:
         "click .playBtn": "onPlayButtonClicked"
         "click .addBtn": "onAddButtonClicked"
+
+      render:->
+        attrs = @model.attributes
+        @$el.html @template attrs
+        @
 
       # Notifies collection to add model, and update visual of [Play] button
       # @param [boolean] isPlay : If false, simply adds to the collection. If true, inserts to after currently playing index

@@ -1,13 +1,18 @@
 # A view for each items in the play list
 define(
-  ['Underscore', 'Backbone', 'ItemView', 'text!template/PlayItemView.html', 'SoundPlayer'],
-  (_, Backbone, ItemView, viewTemplate, player)->
-    ItemView.extend
+  ['Underscore', 'Backpack', 'text!template/PlayItemView.html', 'SoundPlayer'],
+  (_, Backpack, viewTemplate, player)->
+    Backpack.View.extend
       template: _.template viewTemplate
 
       events:
         "click .playBtn": "onPlayButtonClicked"
         "click .removeBtn": "onRemoveButtonClicked"
+
+      render:->
+        attrs = @model.attributes
+        @$el.html @template attrs
+        @
 
       # click event handler for [Play] button
       # Play the song corresponding to this view

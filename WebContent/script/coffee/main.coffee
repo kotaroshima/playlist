@@ -34,7 +34,9 @@ shim =
     deps: ['SoundCloud']
     exports: 'SC'
 
-requirejs.config { paths: paths, shim: shim }
+requirejs.config
+  paths: paths
+  shim: shim
 
 require(
   ['jQueryUI', 'Underscore', 'Backbone', 'ListModel', 'backpack/components/ListView', 'SongItemView', 'PlayListContainerView', 'SoundPlayer'],
@@ -44,8 +46,14 @@ require(
       return
 
     collection = new Backbone.Collection model: ListModel
-    new ListView collection: collection, el: '#songListView', itemClass: SongItemView
-    new PlayListContainerView()
+    new ListView
+      collection: collection
+      el: '#songListView'
+      itemClass: SongItemView
+    new PlayListContainerView
+      el: "#playListContainerView"
+      subscribers:
+        SHOW_PLAYLIST: 'open'
 
     player.setup (tracks)->
       collection.reset tracks
