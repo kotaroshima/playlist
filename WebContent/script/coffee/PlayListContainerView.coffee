@@ -11,7 +11,8 @@ define(
       events:
         "click .songListBtn": "close"
 
-      initialize:->
+      initialize:(options)->
+        Backpack.View::initialize.apply @, arguments
         @render()
 
         collection = new PlayListCollection null,

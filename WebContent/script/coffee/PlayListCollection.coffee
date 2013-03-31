@@ -4,10 +4,10 @@
 define(
   ['Underscore', 'Backpack', 'SoundPlayer'],
   (_, Backpack, player)->
-    Backbone.Collection.extend
+    Backpack.Collection.extend
 
-      initialize:->
-        Backbone.Collection::initialize.call @
+      initialize:(models, options)->
+        Backpack.Collection::initialize.apply @, arguments
 
         @index = -1;
 
@@ -26,11 +26,7 @@ define(
           return
 
         # if current item gets removed, update index
-        Backbone.on "PLAYLIST_ITEM_REMOVED", (model)=>
-          index = @indexOf model
-          if index < @index
-            @setIndex @index-1
-          return
+        @on "remove", @onRemoved, @
 
         Backbone.on "PLAYLIST_ITEM_SET_INDEX", (model)=>
           @setCurrentModel model
@@ -41,6 +37,12 @@ define(
         urls = _.map @models, (m)->
           m.get 'uri'
         _.indexOf urls, model.get('uri')
+        return
+
+      onRemoved:(model)->
+        index = @indexOf model
+        if index < @index
+          @setIndex @index-1
         return
 
       setCurrentModel:(model)->

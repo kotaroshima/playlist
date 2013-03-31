@@ -2,13 +2,12 @@
 (function() {
 
   define(['Underscore', 'Backpack', 'SoundPlayer'], function(_, Backpack, player) {
-    return Backbone.Collection.extend({
-      initialize: function() {
+    return Backpack.Collection.extend({
+      initialize: function(models, options) {
         var _this = this;
-        Backbone.Collection.prototype.initialize.call(this);
+        Backpack.Collection.prototype.initialize.apply(this, arguments);
         this.index = -1;
         Backbone.on("PLAYLIST_ITEM_ADDED", function(model, isPlay) {
-          var options;
           options = null;
           if (isPlay) {
             if (_this.index === -1) {
@@ -26,13 +25,7 @@
             _this.setIndex(options.at);
           }
         });
-        Backbone.on("PLAYLIST_ITEM_REMOVED", function(model) {
-          var index;
-          index = _this.indexOf(model);
-          if (index < _this.index) {
-            _this.setIndex(_this.index - 1);
-          }
-        });
+        this.on("remove", this.onRemoved, this);
         return Backbone.on("PLAYLIST_ITEM_SET_INDEX", function(model) {
           _this.setCurrentModel(model);
         });
@@ -43,6 +36,13 @@
           return m.get('uri');
         });
         _.indexOf(urls, model.get('uri'));
+      },
+      onRemoved: function(model) {
+        var index;
+        index = this.indexOf(model);
+        if (index < this.index) {
+          this.setIndex(this.index - 1);
+        }
       },
       setCurrentModel: function(model) {
         var index;

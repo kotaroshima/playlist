@@ -7,8 +7,9 @@
       events: {
         "click .songListBtn": "close"
       },
-      initialize: function() {
+      initialize: function(options) {
         var collection, view;
+        Backpack.View.prototype.initialize.apply(this, arguments);
         this.render();
         collection = new PlayListCollection(null, {
           model: ListModel,
