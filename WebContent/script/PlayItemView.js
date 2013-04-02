@@ -5,8 +5,8 @@
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        "click .playBtn": "onPlayButtonClicked",
-        "click .removeBtn": "onRemoveButtonClicked"
+        'click .playBtn': 'onPlayButtonClicked',
+        'click .removeBtn': 'onRemoveButtonClicked'
       },
       render: function() {
         var attrs;
@@ -16,11 +16,9 @@
       },
       onPlayButtonClicked: function() {
         player.play(this.model);
-        Backbone.trigger("PLAYLIST_ITEM_SET_INDEX", this.model);
       },
       onRemoveButtonClicked: function() {
-        if (confirm(_.template("Are you sure you want to delete '<%=title%>'?", this.model.attributes))) {
-          Backbone.trigger("PLAYLIST_ITEM_REMOVED", this.model);
+        if (confirm(_.template('Are you sure you want to delete "<%=title%>"?', this.model.attributes))) {
           this.model.destroy();
         }
       }

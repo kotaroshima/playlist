@@ -3,29 +3,41 @@
 # - back to song list button
 # It is implemented as a dialog
 define(
-  ['jQuery', 'Underscore', 'Backpack', 'ListModel', 'PlayListCollection', 'backpack/components/ListView', 'PlayItemView', 'backpack/plugins/Sortable', 'text!template/PlayListContainerView.html'],
-  ($, _, Backpack, ListModel, PlayListCollection, ListView, PlayItemView, Sortable, viewTemplate)->
+  ['jQuery','Underscore','Backpack','CurrentModel','backpack/components/ListView','PlayItemView','backpack/plugins/Sortable','text!template/PlayListContainerView.html'],
+  ($, _, Backpack, CurrentModel, ListView, PlayItemView, Sortable, viewTemplate)->
     Backpack.View.extend
       template: _.template viewTemplate
 
       events:
-        "click .songListBtn": "close"
+        'click .songListBtn': 'close'
 
       initialize:(options)->
         Backpack.View::initialize.apply @, arguments
         @render()
 
-        collection = new PlayListCollection null,
-          model: ListModel
+        collection = new Backpack.Collection null,
+          model: Backpack.Model
+          plugins: [CurrentModel]
           subscribers:
+            SONG_STARTED: 'setCurrentModel'
             SONG_FINISHED: 'onSongFinished'
+            PLAYLIST_ITEM_ADD: 'add'
+            PLAYLIST_ITEM_INSERT: 'insertAfterCurrent'
+          publishers:
+            setCurrentIndex: 'PLAYLIST_INDEX_UPDATED'
+          onSongFinished:->
+            model = @next()
+            if model
+              player.play model
+            return
+
         view = @listView = new ListView
           collection: collection
           el: '#playListView'
           itemClass: PlayItemView
           plugins: [Sortable]
           subscribers:
-            PLAYLIST_INDEX_UPDATED: @onCurrentIndexUpdated
+            PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
           onCurrentIndexUpdated:(index)->
             if @_nowPlayingView
               @_nowPlayingView.$el.removeClass 'now-playing'
@@ -33,6 +45,7 @@ define(
               view = @_nowPlayingView = @getChild index
               view.$el.addClass 'now-playing'
             return
+
         view.render()
         return
 

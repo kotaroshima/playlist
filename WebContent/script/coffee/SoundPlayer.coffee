@@ -4,13 +4,13 @@ define(
   (SC, Backbone)->
     instance = null
 
-    SoundPlayer = ->
+    SoundPlayer =->
       if instance
-        throw new Error "Only one instance can be instantiated."
+        throw new Error 'Only one instance can be instantiated.'
       @initialize()
 
     # Constructor
-    SoundPlayer::initialize = ->
+    SoundPlayer::initialize =->
       # initialize client with app credentials
       SC.initialize
         client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
@@ -18,13 +18,13 @@ define(
       @domNode = document.getElementById 'embedContainer'
       @
 
-    SoundPlayer.getInstance = ->
+    SoundPlayer.getInstance =->
       if !instance
         instance = new SoundPlayer()
       instance
 
     # Initialization
-    SoundPlayer::setup = (callback)->
+    SoundPlayer::setup =(callback)->
       # by default, show tracks ordered by 'hotness'
       SC.get '/tracks',
         { order: 'hotness', limit: 10, filter: 'streamable' },
@@ -32,9 +32,9 @@ define(
       return
 
     # Plays sound
-    SoundPlayer::play = (model)->
-      Backbone.trigger "SONG_START", model
-      url = model.get "uri"
+    SoundPlayer::play =(model)->
+      Backbone.trigger 'SONG_STARTED', model
+      url = model.get 'uri'
       if !@_playerInit
         # embed player widget
         SC.oEmbed url, {auto_play: true}, (response)=>
@@ -43,7 +43,7 @@ define(
           # connect to 'SC.Widget.Events.FINISH' to notify to play next song
           widget = @_widget = SC.Widget $('#embedContainer IFRAME').get(0)
           widget.bind SC.Widget.Events.FINISH, ->
-            Backbone.trigger "SONG_FINISHED"
+            Backbone.trigger 'SONG_FINISHED'
             return
           @_playerInit = true
           widget.play() # call play explicitly, because somehow 'auto_play' didn't work in iPhone
@@ -55,7 +55,7 @@ define(
       return
 
     # Searches for songs with a keyword
-    SoundPlayer::search = (searchString, callback)->
+    SoundPlayer::search =(searchString, callback)->
       SC.get '/tracks', { q: searchString }, callback
       return
 

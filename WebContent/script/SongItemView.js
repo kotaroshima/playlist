@@ -5,8 +5,8 @@
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        "click .playBtn": "onPlayButtonClicked",
-        "click .addBtn": "onAddButtonClicked"
+        'click .playBtn': 'onPlayButtonClicked',
+        'click .addBtn': 'onAddButtonClicked'
       },
       render: function() {
         var attrs;
@@ -14,16 +14,16 @@
         this.$el.html(this.template(attrs));
         return this;
       },
-      add2PlayList: function(isPlay) {
-        Backbone.trigger("PLAYLIST_ITEM_ADDED", this.model.clone(), isPlay);
+      onPlayButtonClicked: function() {
+        var model;
+        model = this.model.clone();
+        Backbone.trigger('PLAYLIST_ITEM_INSERT', model);
+        player.play(model);
         this.$el.addClass('playListAdded');
       },
-      onPlayButtonClicked: function() {
-        player.play(this.model);
-        this.add2PlayList(true);
-      },
       onAddButtonClicked: function() {
-        this.add2PlayList(false);
+        Backbone.trigger('PLAYLIST_ITEM_ADD', this.model.clone());
+        this.$el.addClass('playListAdded');
       }
     });
   });

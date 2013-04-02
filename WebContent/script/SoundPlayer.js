@@ -6,7 +6,7 @@
     instance = null;
     SoundPlayer = function() {
       if (instance) {
-        throw new Error("Only one instance can be instantiated.");
+        throw new Error('Only one instance can be instantiated.');
       }
       return this.initialize();
     };
@@ -34,8 +34,8 @@
     SoundPlayer.prototype.play = function(model) {
       var url,
         _this = this;
-      Backbone.trigger("SONG_START", model);
-      url = model.get("uri");
+      Backbone.trigger('SONG_STARTED', model);
+      url = model.get('uri');
       if (!this._playerInit) {
         SC.oEmbed(url, {
           auto_play: true
@@ -44,7 +44,7 @@
           _this.domNode.innerHTML = response.html;
           widget = _this._widget = SC.Widget($('#embedContainer IFRAME').get(0));
           widget.bind(SC.Widget.Events.FINISH, function() {
-            Backbone.trigger("SONG_FINISHED");
+            Backbone.trigger('SONG_FINISHED');
           });
           _this._playerInit = true;
           widget.play();

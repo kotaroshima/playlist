@@ -6,8 +6,8 @@ define(
       template: _.template viewTemplate
 
       events:
-        "click .playBtn": "onPlayButtonClicked"
-        "click .removeBtn": "onRemoveButtonClicked"
+        'click .playBtn': 'onPlayButtonClicked'
+        'click .removeBtn': 'onRemoveButtonClicked'
 
       render:->
         attrs = @model.attributes
@@ -18,14 +18,12 @@ define(
       # Play the song corresponding to this view
       onPlayButtonClicked:->
         player.play @model
-        Backbone.trigger "PLAYLIST_ITEM_SET_INDEX", @model
         return
 
       # click event handler for [Remove] button
       # removes this item from play list
       onRemoveButtonClicked:->
-        if confirm(_.template("Are you sure you want to delete '<%=title%>'?", @model.attributes))
-          Backbone.trigger "PLAYLIST_ITEM_REMOVED", @model
+        if confirm(_.template('Are you sure you want to delete "<%=title%>"?', @model.attributes))
           @model.destroy()
         return
 )
