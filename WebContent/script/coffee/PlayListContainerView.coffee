@@ -3,8 +3,8 @@
 # - back to song list button
 # It is implemented as a dialog
 define(
-  ['jQuery','Underscore','Backpack','CurrentModel','backpack/components/ListView','PlayItemView','backpack/plugins/Sortable','text!template/PlayListContainerView.html'],
-  ($, _, Backpack, CurrentModel, ListView, PlayItemView, Sortable, viewTemplate)->
+  ['jQueryUITouchPunch', 'Sortable','CurrentModel','PlayItemView','text!template/PlayListContainerView.html'],
+  ($, Backpack, CurrentModel, PlayItemView, viewTemplate)->
     Backpack.View.extend
       template: _.template viewTemplate
 
@@ -31,11 +31,11 @@ define(
               player.play model
             return
 
-        view = @listView = new ListView
+        view = @listView = new Backpack.ListView
           collection: collection
           el: '#playListView'
           itemClass: PlayItemView
-          plugins: [Sortable]
+          plugins: [Backpack.Sortable]
           subscribers:
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
           onCurrentIndexUpdated:(index)->
