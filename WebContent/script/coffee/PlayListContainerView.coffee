@@ -28,7 +28,7 @@ define(
           onSongFinished:->
             model = @next()
             if model
-              player.play model
+              Backbone.trigger 'PLAYER_PLAY', model
             return
 
         view = @listView = new Backpack.ListView

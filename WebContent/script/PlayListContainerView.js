@@ -27,7 +27,7 @@
             var model;
             model = this.next();
             if (model) {
-              player.play(model);
+              Backbone.trigger('PLAYER_PLAY', model);
             }
           }
         });

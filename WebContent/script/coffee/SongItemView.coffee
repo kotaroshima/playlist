@@ -1,7 +1,7 @@
 # A view for each songs in the main page
 define(
-  ['Underscore', 'Backpack', 'text!template/SongItemView.html', 'SoundPlayer'],
-  (_, Backpack, viewTemplate, player)->
+  ['Underscore', 'Backpack', 'text!template/SongItemView.html'],
+  (_, Backpack, viewTemplate)->
     Backpack.View.extend
       template: _.template viewTemplate
 
@@ -19,7 +19,7 @@ define(
       onPlayButtonClicked:->
         model = @model.clone()
         Backbone.trigger 'PLAYLIST_ITEM_INSERT', model
-        player.play model
+        Backbone.trigger 'PLAYER_PLAY', model
         @$el.addClass 'playListAdded'
         return
 

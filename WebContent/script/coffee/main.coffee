@@ -44,9 +44,11 @@ requirejs.config
 
 require(
   ['ListView', 'SongItemView', 'PlayListContainerView', 'SoundPlayer'],
-  (Backpack, SongItemView, PlayListContainerView, player)->
+  (Backpack, SongItemView, PlayListContainerView, SoundPlayer)->
     ### override so that it won't try to save to server ###
     Backbone.sync =->
+
+    player = SoundPlayer.getInstance()
 
     $('#showPlayListButton').on 'click', ->
       Backbone.trigger 'SHOW_PLAYLIST'

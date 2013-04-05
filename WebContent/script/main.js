@@ -59,12 +59,13 @@
     }
   });
 
-  require(['ListView', 'SongItemView', 'PlayListContainerView', 'SoundPlayer'], function(Backpack, SongItemView, PlayListContainerView, player) {
+  require(['ListView', 'SongItemView', 'PlayListContainerView', 'SoundPlayer'], function(Backpack, SongItemView, PlayListContainerView, SoundPlayer) {
     /* override so that it won't try to save to server
     */
 
-    var collection;
+    var collection, player;
     Backbone.sync = function() {};
+    player = SoundPlayer.getInstance();
     $('#showPlayListButton').on('click', function() {
       Backbone.trigger('SHOW_PLAYLIST');
     });
