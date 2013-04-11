@@ -5,8 +5,8 @@
   instance = null;
 
   define(['SoundCloudAPI', 'Backpack'], function(SC, Backpack) {
-    var SoundPlayer;
-    SoundPlayer = Backpack.Class.extend({
+    return Backpack.Class.extend({
+      plugins: [Backpack.Singleton],
       initialize: function() {
         if (instance) {
           throw new Error('Only one instance can be instantiated.');
@@ -57,15 +57,6 @@
         }, callback);
       }
     });
-    _.extend(SoundPlayer, {
-      getInstance: function() {
-        if (!instance) {
-          instance = new SoundPlayer();
-        }
-        return instance;
-      }
-    });
-    return SoundPlayer;
   });
 
 }).call(this);

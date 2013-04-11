@@ -4,7 +4,9 @@ instance = null
 define(
   ['SoundCloudAPI', 'Backpack'],
   (SC, Backpack)->
-    SoundPlayer = Backpack.Class.extend
+    Backpack.Class.extend
+      plugins: [Backpack.Singleton]
+
       initialize:->
         if instance
           throw new Error 'Only one instance can be instantiated.'
@@ -51,12 +53,4 @@ define(
       search: (searchString, callback)->
         SC.get '/tracks', { q: searchString }, callback
         return
-
-    _.extend SoundPlayer,
-      getInstance:->
-        if !instance
-          instance = new SoundPlayer()
-        instance
-
-    SoundPlayer
 )
