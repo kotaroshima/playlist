@@ -9,6 +9,7 @@ requirejs.config
     Backpack: ['lib/backpack/Backpack']
     ListView: ['lib/backpack/components/ListView']
     Sortable: ['lib/backpack/plugins/Sortable']
+    Singleton: ['lib/backpack/plugins/Singleton']
     SoundCloud: ['http://connect.soundcloud.com/sdk']
     SoundCloudAPI: ['https://w.soundcloud.com/player/api']
   shim:
@@ -40,6 +41,9 @@ requirejs.config
       exports: 'Backpack'
     Sortable:
       deps: ['ListView']
+      exports: 'Backpack'
+    Singleton:
+      deps: ['Backpack']
       exports: 'Backpack'
 
 require(
