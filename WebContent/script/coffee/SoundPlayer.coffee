@@ -1,6 +1,4 @@
 # A singleton class that manages interaction with SoundCloud APIs
-instance = null
-
 define(
   ['SoundCloudAPI', 'Backpack'],
   (SC, Backpack)->
@@ -8,9 +6,6 @@ define(
       plugins: [Backpack.Singleton]
 
       initialize:->
-        if instance
-          throw new Error 'Only one instance can be instantiated.'
-
         # initialize client with app credentials
         SC.initialize
           client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
