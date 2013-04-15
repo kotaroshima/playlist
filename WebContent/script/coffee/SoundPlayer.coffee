@@ -1,6 +1,6 @@
 # A singleton class that manages interaction with SoundCloud APIs
 define(
-  ['SoundCloudAPI', 'Singleton'],
+  ['SoundCloudAPI', 'Backpack'],
   (SC, Backpack)->
     Backpack.Class.extend
       plugins: [Backpack.Singleton]

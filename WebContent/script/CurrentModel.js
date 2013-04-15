@@ -12,7 +12,7 @@
         urls = _.map(this.models, function(m) {
           return m.get('uri');
         });
-        _.indexOf(urls, model.get('uri'));
+        return _.indexOf(urls, model.get('uri'));
       },
       setCurrentModel: function(model) {
         var index;

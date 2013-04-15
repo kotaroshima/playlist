@@ -13,7 +13,6 @@ define(
       urls = _.map @models, (m)->
         m.get 'uri'
       _.indexOf urls, model.get('uri')
-      return
 
     setCurrentModel:(model)->
       index = @indexOf model
