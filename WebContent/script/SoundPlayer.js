@@ -5,15 +5,16 @@
     return Backpack.Class.extend({
       plugins: [Backpack.Singleton],
       initialize: function() {
+        Backpack.Class.prototype.initialize.apply(this, arguments);
         SC.initialize({
           client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
           redirect_uri: 'http://kotaroshima.github.com/playlist/WebContent/callback.html'
         });
-        this.domNode = document.getElementById('embedContainer');
         Backbone.on('PLAYER_PLAY', this.play, this);
         return this;
       },
-      setup: function(callback) {
+      setup: function(node, callback) {
+        this.domNode = node;
         SC.get('/tracks', {
           order: 'hotness',
           limit: 10,
@@ -30,7 +31,7 @@
             auto_play: true
           }, function(response) {
             var widget;
-            _this.domNode.innerHTML = response.html;
+            _this.domNode.html(response.html);
             widget = _this._widget = SC.Widget($('#embedContainer IFRAME').get(0));
             widget.bind(SC.Widget.Events.FINISH, function() {
               Backbone.trigger('SONG_FINISHED');

@@ -9,7 +9,7 @@ define(
       template: _.template viewTemplate
 
       events:
-        'click .songListBtn': 'close'
+        'click .songListBtn': 'onSongListButtonClicked'
 
       initialize:(options)->
         Backpack.View::initialize.apply @, arguments
@@ -33,7 +33,6 @@ define(
 
         view = @listView = new Backpack.ListView
           collection: collection
-          el: '#playListView'
           itemClass: PlayItemView
           plugins: [Backpack.Container, Backpack.Sortable]
           subscribers:
@@ -45,24 +44,13 @@ define(
               @_nowPlayingView = @getChild index
               @_nowPlayingView.$el.addClass 'now-playing'
             return
-
         view.render()
+        @$('#playListView').append view.$el
         return
 
       render:->
         @$el.html @template()
-
-        @$el.dialog
-          autoOpen: false
-          width: $(window).width()
-          height: $(window).height()
         @
 
-      open:->
-        @$el.dialog 'open'
-        return
-
-      close:->
-        @$el.dialog 'close'
-        return
+      onSongListButtonClicked:->
 )

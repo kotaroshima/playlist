@@ -6,16 +6,16 @@ define(
       plugins: [Backpack.Singleton]
 
       initialize:->
+        Backpack.Class::initialize.apply @, arguments
         # initialize client with app credentials
         SC.initialize
           client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
           redirect_uri: 'http://kotaroshima.github.com/playlist/WebContent/callback.html'
-        @domNode = document.getElementById 'embedContainer'
-
         Backbone.on 'PLAYER_PLAY', @play, @
         @
 
-      setup:(callback)->
+      setup:(node, callback)->
+        @domNode = node
         # by default, show tracks ordered by 'hotness'
         SC.get '/tracks',
           { order: 'hotness', limit: 10, filter: 'streamable' },
@@ -28,8 +28,8 @@ define(
         if !@_playerInit
           # embed player widget
           SC.oEmbed url, {auto_play: true}, (response)=>
-            @domNode.innerHTML = response.html
-  
+            @domNode.html response.html
+
             # connect to 'SC.Widget.Events.FINISH' to notify to play next song
             widget = @_widget = SC.Widget $('#embedContainer IFRAME').get(0)
             widget.bind SC.Widget.Events.FINISH, ->

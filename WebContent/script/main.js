@@ -7,7 +7,7 @@
       jQuery: ['http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery'],
       jQueryUI: ['http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui'],
       jQueryUITouchPunch: ['http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min'],
-      Underscore: ['http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min'],
+      Underscore: ['http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore'],
       Backbone: ['http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone'],
       Backpack: ['lib/backpack/Backpack-all'],
       SoundCloud: ['http://connect.soundcloud.com/sdk'],
@@ -49,37 +49,32 @@
     }
   });
 
-  require(['Backpack', 'SongItemView', 'PlayListContainerView', 'SoundPlayer'], function(Backpack, SongItemView, PlayListContainerView, SoundPlayer) {
+  require(['Backbone', 'SongListContainerView', 'PlayListContainerView'], function(Backbone, SongListContainerView, PlayListContainerView) {
     /* override so that it won't try to save to server
     */
 
-    var collection, player;
+    var playListContainerView, songListContainerView, stackView;
     Backbone.sync = function() {};
-    player = SoundPlayer.getInstance();
-    $('#showPlayListButton').on('click', function() {
-      Backbone.trigger('SHOW_PLAYLIST');
+    songListContainerView = new SongListContainerView({
+      name: 'songListContainerView'
     });
-    collection = new Backpack.Collection(null, {
-      model: Backpack.Model
+    playListContainerView = new PlayListContainerView({
+      name: 'playListContainerView'
     });
-    new Backpack.ListView({
-      collection: collection,
-      el: '#songListView',
-      itemClass: SongItemView
-    });
-    new PlayListContainerView({
-      el: '#playListContainerView',
-      subscribers: {
-        SHOW_PLAYLIST: 'open'
+    stackView = new Backpack.StackView({
+      el: '#stackView',
+      children: [songListContainerView, playListContainerView],
+      selectedIndex: 0,
+      stackEvents: {
+        songListContainerView: {
+          event: 'onPlayListButtonClicked',
+          targetView: 'playListContainerView'
+        },
+        playListContainerView: {
+          event: 'onSongListButtonClicked',
+          targetView: 'songListContainerView'
+        }
       }
-    });
-    player.setup(function(tracks) {
-      collection.reset(tracks);
-    });
-    $('#searchBtn').click(function(e) {
-      player.search($('#searchBox').val(), function(tracks) {
-        collection.reset(tracks);
-      });
     });
   });
 
