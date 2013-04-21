@@ -4,7 +4,7 @@ requirejs.config
     jQuery: ['http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery']
     jQueryUI: ['http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui']
     jQueryUITouchPunch: ['http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min']
-    Underscore: ['http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min']
+    Underscore: ['http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore']
     Backbone: ['http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone']
     Backpack: ['lib/backpack/Backpack-all']
     SoundCloud: ['http://connect.soundcloud.com/sdk']
@@ -35,38 +35,27 @@ requirejs.config
       exports: 'SC'
 
 require(
-  ['Backpack', 'SongItemView', 'PlayListContainerView', 'SoundPlayer'],
-  (Backpack, SongItemView, PlayListContainerView, SoundPlayer)->
+  ['Backbone', 'SongListContainerView', 'PlayListContainerView'],
+  (Backbone, SongListContainerView, PlayListContainerView)->
     ### override so that it won't try to save to server ###
     Backbone.sync =->
 
-    player = SoundPlayer.getInstance()
+    songListContainerView = new SongListContainerView
+      name: 'songListContainerView'
 
-    $('#showPlayListButton').on 'click', ->
-      Backbone.trigger 'SHOW_PLAYLIST'
-      return
+    playListContainerView = new PlayListContainerView
+      name: 'playListContainerView'
 
-    collection = new Backpack.Collection null,
-      model: Backpack.Model
-
-    new Backpack.ListView
-      collection: collection
-      el: '#songListView'
-      itemClass: SongItemView
-
-    new PlayListContainerView
-      el: '#playListContainerView'
-      subscribers:
-        SHOW_PLAYLIST: 'open'
-
-    player.setup (tracks)->
-      collection.reset tracks
-      return
-
-    $('#searchBtn').click (e)->
-      player.search $('#searchBox').val(), (tracks)->
-        collection.reset tracks
-        return
-      return
+    stackView = new Backpack.StackView
+      el: '#stackView'
+      children: [songListContainerView, playListContainerView]
+      selectedIndex: 0
+      stackEvents:
+        songListContainerView:
+          event: 'onPlayListButtonClicked'
+          targetView: 'playListContainerView'
+        playListContainerView:
+          event: 'onSongListButtonClicked'
+          targetView: 'songListContainerView'
     return
 )

@@ -5,7 +5,7 @@
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        'click .songListBtn': 'close'
+        'click .songListBtn': 'onSongListButtonClicked'
       },
       initialize: function(options) {
         var collection, view;
@@ -33,7 +33,6 @@
         });
         view = this.listView = new Backpack.ListView({
           collection: collection,
-          el: '#playListView',
           itemClass: PlayItemView,
           plugins: [Backpack.Container, Backpack.Sortable],
           subscribers: {
@@ -50,22 +49,13 @@
           }
         });
         view.render();
+        this.$('#playListView').append(view.$el);
       },
       render: function() {
         this.$el.html(this.template());
-        this.$el.dialog({
-          autoOpen: false,
-          width: $(window).width(),
-          height: $(window).height()
-        });
         return this;
       },
-      open: function() {
-        this.$el.dialog('open');
-      },
-      close: function() {
-        this.$el.dialog('close');
-      }
+      onSongListButtonClicked: function() {}
     });
   });
 
