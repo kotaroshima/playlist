@@ -15,6 +15,11 @@
       },
       setup: function(node, callback) {
         this.domNode = node;
+        this.loadTracks({
+          order: 'hotness',
+          limit: 10,
+          filter: 'streamable'
+        }, callback);
         SC.get('/tracks', {
           order: 'hotness',
           limit: 10,
@@ -46,10 +51,12 @@
           this._widget.play();
         }
       },
-      search: function(searchString, callback) {
-        SC.get('/tracks', {
-          q: searchString
-        }, callback);
+      loadTracks: function(options, callback) {
+        Backbone.trigger('SONGLIST_LOADING', true);
+        SC.get('/tracks', options, function(tracks) {
+          callback(tracks);
+          Backbone.trigger('SONGLIST_LOADING', false);
+        });
       }
     });
   });

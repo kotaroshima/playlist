@@ -17,6 +17,7 @@ define(
       setup:(node, callback)->
         @domNode = node
         # by default, show tracks ordered by 'hotness'
+        @loadTracks { order: 'hotness', limit: 10, filter: 'streamable' }, callback
         SC.get '/tracks',
           { order: 'hotness', limit: 10, filter: 'streamable' },
           callback
@@ -45,7 +46,11 @@ define(
         return
 
       # Searches for songs with a keyword
-      search: (searchString, callback)->
-        SC.get '/tracks', { q: searchString }, callback
+      loadTracks: (options, callback)->
+        Backbone.trigger 'SONGLIST_LOADING', true
+        SC.get '/tracks', options, (tracks)->
+          callback tracks
+          Backbone.trigger 'SONGLIST_LOADING', false
+          return
         return
 )
