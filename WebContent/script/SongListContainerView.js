@@ -17,7 +17,10 @@
         });
         songListView = new Backpack.ListView({
           collection: collection,
-          itemClass: SongItemView
+          itemClass: SongItemView,
+          subscribers: {
+            SONGLIST_LOADING: 'setLoading'
+          }
         });
         this.$('#songListView').append(songListView.$el);
         SoundPlayer.getInstance().setup(this.$('#embedContainer'), function(tracks) {
@@ -31,7 +34,9 @@
       onPlayListButtonClicked: function() {},
       onSearchButtonClicked: function() {
         var _this = this;
-        SoundPlayer.getInstance().search($('#searchBox').val(), function(tracks) {
+        SoundPlayer.getInstance().loadTracks({
+          q: $('#searchBox').val()
+        }, function(tracks) {
           _this.collection.reset(tracks);
         });
       }

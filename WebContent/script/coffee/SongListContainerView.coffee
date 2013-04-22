@@ -17,6 +17,8 @@ define(
         songListView = new Backpack.ListView
           collection: collection
           itemClass: SongItemView
+          subscribers:
+            SONGLIST_LOADING: 'setLoading'
         @$('#songListView').append songListView.$el
 
         SoundPlayer.getInstance().setup @$('#embedContainer'), (tracks)->
@@ -31,7 +33,7 @@ define(
       onPlayListButtonClicked:->
 
       onSearchButtonClicked:->
-        SoundPlayer.getInstance().search $('#searchBox').val(), (tracks)=>
+        SoundPlayer.getInstance().loadTracks { q: $('#searchBox').val() }, (tracks)=>
           @collection.reset tracks
           return
         return
