@@ -53,9 +53,9 @@ require(
       stackEvents:
         songListContainerView:
           event: 'onPlayListButtonClicked'
-          targetView: 'playListContainerView'
+          target: 'playListContainerView'
         playListContainerView:
           event: 'onSongListButtonClicked'
-          targetView: 'songListContainerView'
+          target: 'songListContainerView'
     return
 )
