@@ -19,6 +19,21 @@ Usage
 * Just open WebContent/index.html with a browser
  * Or access to the hosted version : http://kotaroshima.github.com/playlist/WebContent/
 
+Development
+------
+* Do the following to checkout Backpack.js:
+```
+git submodule update --init
+```
+* For compiling CoffeeScript files, you need CoffeeScript installed:
+```
+npm install -g coffee-script
+```
+* To build JS files, run:
+```
+cake build
+```
+
 Libraries Used
 --------
 * [jQuery](http://jquery.com/)
