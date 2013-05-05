@@ -1,3 +1,3 @@
-[submodule "WebContent/script/lib/backpack"]
-	path = WebContent/script/lib/backpack
-	url = git@github.com:kotaroshima/backpack.git
+[submodule "script/lib/backpack"]
+	path = script/lib/backpack
+	url = git://github.com/kotaroshima/backpack.git
