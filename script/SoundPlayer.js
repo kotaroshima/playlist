@@ -7,7 +7,7 @@
         Backpack.Class.prototype.initialize.apply(this, arguments);
         SC.initialize({
           client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
-          redirect_uri: 'http://kotaroshima.github.com/playlist/WebContent/callback.html'
+          redirect_uri: 'http://kotaroshima.github.com/playlist/callback.html'
         });
         Backbone.on('PLAYER_PLAY', this.play, this);
         return this;

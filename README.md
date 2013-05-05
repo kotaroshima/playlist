@@ -16,8 +16,8 @@ It has 2 pages with the following functionalities:
  
 Usage
 ------
-* Just open WebContent/index.html with a browser
- * Or access to the hosted version : http://kotaroshima.github.com/playlist/WebContent/
+* Just open index.html with a browser
+ * Or access to the hosted version : http://kotaroshima.github.com/playlist/
 
 Development
 ------
