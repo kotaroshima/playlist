@@ -1,5 +1,8 @@
 <div class="item-view">
-  <span style="width:50px"><button class="playBtn">Play</button></span>
+  <span style="width:50px">
+    <button class="play-button">Play</button>
+    <button class="remove-button"><img src="images/delete_control.jpg" /></button>
+  </span>
   <span style="width:50px;">
     <a href="<%- user.permalink_url %>" title="<%- user.username %>" target="_blank" class="user-name">
       <img src="<%- user.avatar_url %>" style="width:50px; height:50px;" alt="<%- user.username %>" title="<%- user.username %>" />
@@ -10,5 +13,7 @@
     <div><a href="<%- user.permalink_url %>" title="<%- user.username %>" target="_blank" class="user-name"><%- user.username %></a></div>
     <div><a href="<%- permalink_url %>" target="_blank"><%- title %></a></div>
   </span>
-  <span class="item-actions" style="width:70px;"><button class="actionBtn removeBtn">Delete</button></span>
+  <span class="item-actions" style="width:70px;">
+    <img src="images/row_reorder.jpg" class="reorder-handle" />
+  </span>
 </div>

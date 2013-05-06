@@ -6,22 +6,26 @@ define(
       template: _.template viewTemplate
 
       events:
-        'click .playBtn': 'onPlayButtonClicked'
-        'click .removeBtn': 'onRemoveButtonClicked'
+        'click .play-button': 'onPlayButtonClicked'
+        'click .remove-button': 'onRemoveButtonClicked'
 
       render:->
         attrs = @model.attributes
         @$el.html @template attrs
         @
 
-      # click event handler for [Play] button
-      # Play the song corresponding to this view
+      ###
+      * Click event handler for [Play] button
+      * Play the song corresponding to this view
+      ###
       onPlayButtonClicked:->
         Backbone.trigger 'PLAYER_PLAY', @model
         return
 
-      # click event handler for [Remove] button
-      # removes this item from play list
+      ###
+      * Click event handler for [Remove] button
+      * removes this item from play list
+      ###
       onRemoveButtonClicked:->
         if confirm(_.template('Are you sure you want to delete "<%=title%>"?', @model.attributes))
           @model.destroy()

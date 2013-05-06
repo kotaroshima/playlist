@@ -4,7 +4,7 @@
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        'click .playBtn': 'onPlayButtonClicked',
+        'click .play-button': 'onPlayButtonClicked',
         'click .addBtn': 'onAddButtonClicked'
       },
       render: function() {
