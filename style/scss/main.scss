@@ -50,7 +50,7 @@ A {
   .item-actions {
     padding-right: 5px;
 
-    BUTTON {
+    BUTTON.action-button {
       display: inline;
       width: 60px;
       height: 32px;
@@ -79,12 +79,52 @@ A {
   }
 }
 
-.playListAdded .item-actions BUTTON.addBtn {
-  background-color: gray;
+.edit-button {
+  display: inline;
 }
 
-#playListApp .ui-dialog-titlebar {
+.done-button {
   display: none;
+}
+
+.remove-button {
+  width: 34px;
+  height: 33px;
+  border: none;
+  padding: 0;
+  display: none;
+}
+
+.reorder-handle {
+  width: 32px;
+  height: 32px;
+  display: none;
+}
+
+.song-list-button {
+  float:left;
+}
+
+.playlist-edit {
+  .song-list-button, .edit-button, .play-button {
+    display: none;
+  }
+
+  .done-button {
+    display: inline;
+  }
+
+  .reorder-handle {
+    display: inline-block;
+  }
+
+  .remove-button {
+    display: inline;
+  }
+}
+
+.playListAdded .item-actions BUTTON.addBtn {
+  background-color: gray;
 }
 
 /* override jQuery UI styles */

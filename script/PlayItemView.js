@@ -4,8 +4,8 @@
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        'click .playBtn': 'onPlayButtonClicked',
-        'click .removeBtn': 'onRemoveButtonClicked'
+        'click .play-button': 'onPlayButtonClicked',
+        'click .remove-button': 'onRemoveButtonClicked'
       },
       render: function() {
         var attrs;
@@ -14,9 +14,19 @@
         this.$el.html(this.template(attrs));
         return this;
       },
+      /*
+      * Click event handler for [Play] button
+      * Play the song corresponding to this view
+      */
+
       onPlayButtonClicked: function() {
         Backbone.trigger('PLAYER_PLAY', this.model);
       },
+      /*
+      * Click event handler for [Remove] button
+      * removes this item from play list
+      */
+
       onRemoveButtonClicked: function() {
         if (confirm(_.template('Are you sure you want to delete "<%=title%>"?', this.model.attributes))) {
           this.model.destroy();

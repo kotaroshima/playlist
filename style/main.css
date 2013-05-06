@@ -28,7 +28,7 @@ A {
     color: #999; }
   .item-view .item-actions {
     padding-right: 5px; }
-    .item-view .item-actions BUTTON {
+    .item-view .item-actions BUTTON.action-button {
       display: inline;
       width: 60px;
       height: 32px;
@@ -52,11 +52,38 @@ A {
     font-weight: bold;
     color: blue; }
 
+.edit-button {
+  display: inline; }
+
+.done-button {
+  display: none; }
+
+.remove-button {
+  width: 34px;
+  height: 33px;
+  border: none;
+  padding: 0;
+  display: none; }
+
+.reorder-handle {
+  width: 32px;
+  height: 32px;
+  display: none; }
+
+.song-list-button {
+  float: left; }
+
+.playlist-edit .song-list-button, .playlist-edit .edit-button, .playlist-edit .play-button {
+  display: none; }
+.playlist-edit .done-button {
+  display: inline; }
+.playlist-edit .reorder-handle {
+  display: inline-block; }
+.playlist-edit .remove-button {
+  display: inline; }
+
 .playListAdded .item-actions BUTTON.addBtn {
   background-color: gray; }
-
-#playListApp .ui-dialog-titlebar {
-  display: none; }
 
 /* override jQuery UI styles */
 #playListApp .ui-widget #playListContainerView input, #playListApp .ui-widget #playListContainerView select, #playListApp .ui-widget #playListContainerView textarea, #playListApp .ui-widget #playListContainerView button {
