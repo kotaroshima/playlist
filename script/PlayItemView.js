@@ -29,6 +29,11 @@
       onPlayButtonClicked: function() {
         Backbone.trigger('PLAYER_PLAY', this.model);
       },
+      /*
+      * Click event handler for remove confirm icon
+      * switches to remove confirm mode
+      */
+
       onRemoveConfirmButtonClicked: function() {
         var bRemoveConfirm;
 

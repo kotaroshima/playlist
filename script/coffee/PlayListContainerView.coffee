@@ -57,7 +57,7 @@ define(
               @_nowPlayingView.$el.addClass CLS_NOW_PLAYING
             return
         view.render()
-        @$('#playListView').append view.$el
+        @$('#playlist-view').append view.$el
 
         # turn off edit mode
         @setEditMode false
