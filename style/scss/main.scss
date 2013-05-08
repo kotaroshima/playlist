@@ -50,7 +50,7 @@ A {
   .item-actions {
     padding-right: 5px;
 
-    BUTTON {
+    BUTTON.action-button {
       display: inline;
       width: 60px;
       height: 32px;
@@ -79,18 +79,72 @@ A {
   }
 }
 
-.playListAdded .item-actions BUTTON.addBtn {
-  background-color: gray;
+.edit-button {
+  display: inline;
 }
 
-#playListApp .ui-dialog-titlebar {
+.done-button {
   display: none;
 }
 
-/* override jQuery UI styles */
-#playListApp .ui-widget #playListContainerView {
-  input, select, textarea, button {
-    @include default-font;
-    font-size: medium;
+.delete-icon {
+  background-image: url('../images/delete_control.jpg');
+  background-position: no-repeat;
+  width: 34px;
+  height: 33px;
+  border: none;
+  padding: 0;
+  display: none;
+}
+
+.reorder-handle {
+  background-image: url('../images/row_reorder.jpg');
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  display: none;
+}
+
+.song-list-button {
+  float:left;
+}
+
+.item-view .item-actions BUTTON.delete-button {
+  display: none;
+  background-color: red;
+}
+
+.playlist-edit {
+  .song-list-button, .edit-button, .play-button {
+    display: none;
   }
+
+  .done-button {
+    display: inline;
+  }
+
+  .delete-icon {
+    display: inline;
+  }
+
+  .remove-confirm .delete-icon {
+    -webkit-transform: rotate(90deg);  
+    -moz-transform: rotate(90deg);
+  }
+
+  .reorder-handle {
+    display: inline-block;
+  }
+
+  .remove-confirm .reorder-handle {
+    display: none;
+  }
+
+  .remove-confirm .item-actions BUTTON.delete-button {
+    display: inline;
+  }
+}
+
+.playListAdded .item-actions BUTTON.addBtn {
+  background-color: gray;
 }

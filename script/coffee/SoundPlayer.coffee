@@ -10,7 +10,7 @@ define(
         # initialize client with app credentials
         SC.initialize
           client_id: '8ef8b80025535d68a51f4ee5c3343fc0',
-          redirect_uri: 'http://kotaroshima.github.com/playlist/WebContent/callback.html'
+          redirect_uri: 'http://kotaroshima.github.com/playlist/callback.html'
         Backbone.on 'PLAYER_PLAY', @play, @
         @
 
