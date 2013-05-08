@@ -58,7 +58,9 @@ A {
 .done-button {
   display: none; }
 
-.remove-button {
+.delete-icon {
+  background-image: url("../images/delete_control.jpg");
+  background-position: no-repeat;
   width: 34px;
   height: 33px;
   border: none;
@@ -66,6 +68,8 @@ A {
   display: none; }
 
 .reorder-handle {
+  background-image: url("../images/row_reorder.jpg");
+  background-repeat: no-repeat;
   width: 32px;
   height: 32px;
   display: none; }
@@ -77,15 +81,20 @@ A {
   display: none; }
 .playlist-edit .done-button {
   display: inline; }
+.playlist-edit .delete-icon {
+  display: inline; }
+.playlist-edit .remove-confirm .delete-icon {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg); }
 .playlist-edit .reorder-handle {
   display: inline-block; }
-.playlist-edit .remove-button {
+.playlist-edit .remove-confirm .reorder-handle {
+  display: none; }
+.playlist-edit .item-view .item-actions BUTTON.delete-button {
+  display: none;
+  background-color: red; }
+.playlist-edit .remove-confirm .item-actions BUTTON.delete-button {
   display: inline; }
 
 .playListAdded .item-actions BUTTON.addBtn {
   background-color: gray; }
-
-/* override jQuery UI styles */
-#playListApp .ui-widget #playListContainerView input, #playListApp .ui-widget #playListContainerView select, #playListApp .ui-widget #playListContainerView textarea, #playListApp .ui-widget #playListContainerView button {
-  font-family: Verdana,Arial,Helvetica,sans-serif;
-  font-size: medium; }

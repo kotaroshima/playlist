@@ -1,4 +1,8 @@
-# A view for each items in the play list
+###
+* A view for each items in the play list
+###
+CLS_REMOVE_CONFIRM = 'remove-confirm'
+
 define(
   ['Underscore', 'Backpack', 'text!template/PlayItemView.html'],
   (_, Backpack, viewTemplate)->
@@ -7,11 +11,11 @@ define(
 
       events:
         'click .play-button': 'onPlayButtonClicked'
-        'click .remove-button': 'onRemoveButtonClicked'
+        'click .delete-icon': 'onRemoveConfirmButtonClicked'
+        'click .delete-button': 'onRemoveButtonClicked'
 
       render:->
-        attrs = @model.attributes
-        @$el.html @template attrs
+        @$el.html @template @model.attributes
         @
 
       ###
@@ -23,11 +27,19 @@ define(
         return
 
       ###
+      * Click event handler for remove confirm icon
+      * switches to remove confirm mode
+      ###
+      onRemoveConfirmButtonClicked:->
+        bRemoveConfirm = @$el.hasClass CLS_REMOVE_CONFIRM
+        @$el.toggleClass CLS_REMOVE_CONFIRM, !bRemoveConfirm
+        return
+
+      ###
       * Click event handler for [Remove] button
       * removes this item from play list
       ###
       onRemoveButtonClicked:->
-        if confirm(_.template('Are you sure you want to delete "<%=title%>"?', @model.attributes))
-          @model.destroy()
+        @model.destroy()
         return
 )

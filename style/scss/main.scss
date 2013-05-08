@@ -87,7 +87,9 @@ A {
   display: none;
 }
 
-.remove-button {
+.delete-icon {
+  background-image: url('../images/delete_control.jpg');
+  background-position: no-repeat;
   width: 34px;
   height: 33px;
   border: none;
@@ -96,6 +98,8 @@ A {
 }
 
 .reorder-handle {
+  background-image: url('../images/row_reorder.jpg');
+  background-repeat: no-repeat;
   width: 32px;
   height: 32px;
   display: none;
@@ -103,6 +107,11 @@ A {
 
 .song-list-button {
   float:left;
+}
+
+.item-view .item-actions BUTTON.delete-button {
+  display: none;
+  background-color: red;
 }
 
 .playlist-edit {
@@ -114,23 +123,28 @@ A {
     display: inline;
   }
 
+  .delete-icon {
+    display: inline;
+  }
+
+  .remove-confirm .delete-icon {
+    -webkit-transform: rotate(90deg);  
+    -moz-transform: rotate(90deg);
+  }
+
   .reorder-handle {
     display: inline-block;
   }
 
-  .remove-button {
+  .remove-confirm .reorder-handle {
+    display: none;
+  }
+
+  .remove-confirm .item-actions BUTTON.delete-button {
     display: inline;
   }
 }
 
 .playListAdded .item-actions BUTTON.addBtn {
   background-color: gray;
-}
-
-/* override jQuery UI styles */
-#playListApp .ui-widget #playListContainerView {
-  input, select, textarea, button {
-    @include default-font;
-    font-size: medium;
-  }
 }

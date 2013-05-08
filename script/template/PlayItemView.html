@@ -1,7 +1,7 @@
 <div class="item-view">
   <span style="width:50px">
     <button class="play-button">Play</button>
-    <button class="remove-button"><img src="images/delete_control.jpg" /></button>
+    <button class="delete-icon"></button>
   </span>
   <span style="width:50px;">
     <a href="<%- user.permalink_url %>" title="<%- user.username %>" target="_blank" class="user-name">
@@ -14,6 +14,7 @@
     <div><a href="<%- permalink_url %>" target="_blank"><%- title %></a></div>
   </span>
   <span class="item-actions" style="width:70px;">
-    <img src="images/row_reorder.jpg" class="reorder-handle" />
+    <span class="reorder-handle"></span>
+    <button class="action-button delete-button">Delete</button>
   </span>
 </div>
