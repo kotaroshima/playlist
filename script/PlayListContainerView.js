@@ -71,7 +71,7 @@
           }
         });
         view.render();
-        this.$('#playListView').append(view.$el);
+        this.$('#playlist-view').append(view.$el);
         this.setEditMode(false);
       },
       /*

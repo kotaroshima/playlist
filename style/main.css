@@ -30,11 +30,10 @@ A {
     padding-right: 5px; }
     .item-view .item-actions BUTTON.action-button {
       display: inline;
-      width: 60px;
       height: 32px;
-      background-color: green;
       -moz-border-radius: 6px;
       border-radius: 6px;
+      background-color: green;
       color: white;
       border: 0; }
 
@@ -77,6 +76,15 @@ A {
 .song-list-button {
   float: left; }
 
+.item-view .item-actions BUTTON.delete-button {
+  height: 32px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-color: red;
+  color: white;
+  border: 0;
+  display: none; }
+
 .playlist-edit .song-list-button, .playlist-edit .edit-button, .playlist-edit .play-button {
   display: none; }
 .playlist-edit .done-button {
@@ -90,9 +98,6 @@ A {
   display: inline-block; }
 .playlist-edit .remove-confirm .reorder-handle {
   display: none; }
-.playlist-edit .item-view .item-actions BUTTON.delete-button {
-  display: none;
-  background-color: red; }
 .playlist-edit .remove-confirm .item-actions BUTTON.delete-button {
   display: inline; }
 
