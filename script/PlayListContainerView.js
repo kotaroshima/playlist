@@ -11,7 +11,7 @@
 
   CLS_NOW_PLAYING = 'now-playing';
 
-  define(['jQueryUITouchPunch', 'Backpack', 'CurrentModel', 'PlayItemView', 'text!template/PlayListContainerView.html'], function($, Backpack, CurrentModel, PlayItemView, viewTemplate) {
+  define(['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'PlayItemView', 'text!template/PlayListContainerView.html'], function($, Backpack, CurrentModelPlugin, PlayItemView, viewTemplate) {
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
@@ -30,7 +30,7 @@
         this.render();
         collection = new Backpack.Collection(null, {
           model: Backpack.Model,
-          plugins: [CurrentModel],
+          plugins: [CurrentModelPlugin],
           subscribers: {
             SONG_STARTED: 'setCurrentModel',
             SONG_FINISHED: 'onSongFinished',
@@ -52,7 +52,7 @@
         view = this.listView = new Backpack.ListView({
           collection: collection,
           itemClass: PlayItemView,
-          plugins: [Backpack.Container, Backpack.Sortable],
+          plugins: [Backpack.ContainerPlugin, Backpack.SortablePlugin],
           subscribers: {
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
           },
