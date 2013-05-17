@@ -65,7 +65,7 @@
       el: '#stackView',
       children: [songListContainerView, playListContainerView],
       selectedIndex: 0,
-      stackEvents: {
+      navigationEvents: {
         songListContainerView: {
           event: 'onPlayListButtonClicked',
           target: 'playListContainerView'

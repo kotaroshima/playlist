@@ -5,8 +5,8 @@ CLS_PLAYLIST_EDIT = 'playlist-edit'
 CLS_NOW_PLAYING = 'now-playing'
 
 define(
-  ['jQueryUITouchPunch', 'Backpack', 'CurrentModel', 'PlayItemView', 'text!template/PlayListContainerView.html'],
-  ($, Backpack, CurrentModel, PlayItemView, viewTemplate)->
+  ['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'PlayItemView', 'text!template/PlayListContainerView.html'],
+  ($, Backpack, CurrentModelPlugin, PlayItemView, viewTemplate)->
     Backpack.View.extend
       template: _.template viewTemplate # TODO : i18n
 
@@ -25,7 +25,7 @@ define(
         # setup collection
         collection = new Backpack.Collection null,
           model: Backpack.Model
-          plugins: [CurrentModel]
+          plugins: [CurrentModelPlugin]
           subscribers:
             SONG_STARTED: 'setCurrentModel'
             SONG_FINISHED: 'onSongFinished'
@@ -43,7 +43,7 @@ define(
         view = @listView = new Backpack.ListView
           collection: collection
           itemClass: PlayItemView
-          plugins: [Backpack.Container, Backpack.Sortable]
+          plugins: [Backpack.ContainerPlugin, Backpack.SortablePlugin]
           subscribers:
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
           sortable: false
