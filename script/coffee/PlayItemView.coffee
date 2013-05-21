@@ -10,7 +10,7 @@ define(
       template: _.template viewTemplate
 
       events:
-        'click .play-button': 'onPlayButtonClicked'
+        'click .play-item-view': 'onPlayItemClicked'
         'click .delete-icon': 'onRemoveConfirmButtonClicked'
         'click .delete-button': 'onRemoveButtonClicked'
 
@@ -19,11 +19,12 @@ define(
         @
 
       ###
-      * Click event handler for [Play] button
+      * Click event handler for play list item
       * Play the song corresponding to this view
       ###
-      onPlayButtonClicked:->
+      onPlayItemClicked:->
         Backbone.trigger 'PLAYER_PLAY', @model
+        Backbone.trigger 'SHOW_NOW_PLAYING_VIEW'
         return
 
       ###
@@ -33,6 +34,7 @@ define(
       onRemoveConfirmButtonClicked:->
         bRemoveConfirm = @$el.hasClass CLS_REMOVE_CONFIRM
         @$el.toggleClass CLS_REMOVE_CONFIRM, !bRemoveConfirm
+        e.stopPropagation()
         return
 
       ###
@@ -41,5 +43,6 @@ define(
       ###
       onRemoveButtonClicked:->
         @model.destroy()
+        e.stopPropagation()
         return
 )

@@ -16,6 +16,7 @@
       template: _.template(viewTemplate),
       events: {
         'click .song-list-button': 'onSongListButtonClicked',
+        'click .now-playing-button': 'onNowPlayingButtonClicked',
         'click .edit-button': 'onEditButtonClicked',
         'click .done-button': 'onDoneButtonClicked'
       },
@@ -102,6 +103,7 @@
           this.$el.removeClass(CLS_PLAYLIST_EDIT);
         }
       },
+      onNowPlayingButtonClicked: function() {},
       /*
       * Click event handler for [Edit] button
       * Turns on edit mode when clicked

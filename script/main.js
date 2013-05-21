@@ -48,11 +48,11 @@
     }
   });
 
-  require(['Backbone', 'SongListContainerView', 'PlayListContainerView'], function(Backbone, SongListContainerView, PlayListContainerView) {
+  require(['Backbone', 'SongListContainerView', 'PlayListContainerView', 'NowPlayingView'], function(Backbone, SongListContainerView, PlayListContainerView, NowPlayingView) {
     /* override so that it won't try to save to server
     */
 
-    var playListContainerView, songListContainerView, stackView;
+    var nowPlayingView, playListContainerView, songListContainerView, stackView;
 
     Backbone.sync = function() {};
     songListContainerView = new SongListContainerView({
@@ -61,19 +61,41 @@
     playListContainerView = new PlayListContainerView({
       name: 'playListContainerView'
     });
+    nowPlayingView = new NowPlayingView({
+      name: 'nowPlayingView'
+    });
     stackView = new Backpack.StackView({
-      el: '#stackView',
-      children: [songListContainerView, playListContainerView],
-      selectedIndex: 0,
+      el: '#stack-view',
+      children: [songListContainerView, playListContainerView, nowPlayingView],
       navigationEvents: {
-        songListContainerView: {
-          event: 'onPlayListButtonClicked',
-          target: 'playListContainerView'
-        },
-        playListContainerView: {
-          event: 'onSongListButtonClicked',
-          target: 'songListContainerView'
+        songListContainerView: [
+          {
+            event: 'onPlayListButtonClicked',
+            target: 'playListContainerView'
+          }, {
+            event: 'onNowPlayingButtonClicked',
+            target: 'nowPlayingView'
+          }
+        ],
+        playListContainerView: [
+          {
+            event: 'onSongListButtonClicked',
+            target: 'songListContainerView'
+          }, {
+            event: 'onNowPlayingButtonClicked',
+            target: 'nowPlayingView'
+          }
+        ],
+        nowPlayingView: {
+          event: 'onBackButtonClicked',
+          back: true
         }
+      },
+      subscribers: {
+        SHOW_NOW_PLAYING_VIEW: 'showNowPlayingView'
+      },
+      showNowPlayingView: function() {
+        this.showChild('nowPlayingView');
       }
     });
   });

@@ -5,6 +5,7 @@ define(
       template: _.template viewTemplate
       events:
         'click #showPlayListButton': 'onPlayListButtonClicked'
+        'click .now-playing-button': 'onNowPlayingButtonClicked'
         'click #searchBtn': 'onSearchButtonClicked'
 
       initialize:(options)->
@@ -21,7 +22,7 @@ define(
             SONGLIST_LOADING: 'setLoading'
         @$('#songListView').append songListView.$el
 
-        SoundPlayer.getInstance().setup @$('#embedContainer'), (tracks)->
+        SoundPlayer.getInstance().setup $('#embedContainer'), (tracks)->
           collection.reset tracks
           return
         return
@@ -31,6 +32,8 @@ define(
         @
 
       onPlayListButtonClicked:->
+
+      onNowPlayingButtonClicked:->
 
       onSearchButtonClicked:->
         SoundPlayer.getInstance().loadTracks { q: $('#searchBox').val() }, (tracks)=>

@@ -11,7 +11,8 @@
 
 BODY {
   @include default-font;
-  padding: 0 10px;
+  padding: 0;
+  margin: 0;
 }
 
 H1.title {
@@ -27,16 +28,51 @@ A {
   }
 }
 
-#addTaskContainer {
+HR {
+  margin: 0;
+}
+
+.header-row {
+  display: table;
+  background-color: #E0E0E0;
+  width: 100%;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .left-cell {
+    width: 150px;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .right-cell {
+    width: 150px;
+    text-align: right;
+    padding-right: 10px;
+  }
+}
+
+.search-row {
+  background-color: #E0E0E0;
   text-align: right;
-  padding-right: 15px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+#stack-view {
+  max-width:800px;
 }
 
 .item-view {
   display: table;
   height: 32px;
   width: 100%;
-  padding: 6px;
+  border: 1px solid #E0E0E0;
 
   > * {
     display: table-cell;
@@ -45,10 +81,12 @@ A {
 
   .user-name {
     color: #999;
+    font-size:small
   }
 
   .item-actions {
-    padding-right: 5px;
+    text-align: right;
+    padding-right: 15px;
 
     BUTTON.action-button {
       display: inline;
@@ -99,6 +137,7 @@ A {
 .reorder-handle {
   background-image: url('../images/row_reorder.jpg');
   background-repeat: no-repeat;
+  background-position: 8px center;
   width: 32px;
   height: 32px;
   display: none;
@@ -124,6 +163,10 @@ A {
 
   .done-button {
     display: inline;
+  }
+
+  .delete-cell {
+    width: 40px;
   }
 
   .delete-icon {
