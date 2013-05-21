@@ -12,6 +12,7 @@ define(
 
       events:
         'click .song-list-button': 'onSongListButtonClicked'
+        'click .now-playing-button': 'onNowPlayingButtonClicked'
         'click .edit-button': 'onEditButtonClicked'
         'click .done-button': 'onDoneButtonClicked'
 
@@ -88,6 +89,8 @@ define(
         else
           @$el.removeClass CLS_PLAYLIST_EDIT
         return
+
+      onNowPlayingButtonClicked:->
 
       ###
       * Click event handler for [Edit] button

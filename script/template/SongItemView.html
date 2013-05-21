@@ -1,13 +1,12 @@
-<div class="item-view">
-  <span style="width:50px"><button class="play-button">Play</button></span>
+<div class="item-view song-item-view">
   <span style="width:50px;">
     <a href="<%- user.permalink_url %>" title="<%- user.username %>" target="_blank" class="user-name">
       <img src="<%- user.avatar_url %>" style="width:50px; height:50px;" alt="<%- user.username %>" title="<%- user.username %>" />
     </a>
   </span>
-  <span style="padding:10px;">
-    <div><a href="<%- user.permalink_url %>" title="<%- user.username %>" target="_blank" class="user-name"><%- user.username %></a></div>
-    <div><a href="<%- permalink_url %>" target="_blank"><%- title %></a></div>
+  <span style="padding-left:10px;">
+    <div class="song-title"><%- title %></div>
+    <div class="user-name"><%- user.username %></div>
   </span>
-  <span class="item-actions" style="width:70px;"><button class="action-button addBtn">Add</button></span>
+  <span class="item-actions"><button class="action-button addBtn">Add</button></span>
 </div>

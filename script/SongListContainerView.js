@@ -5,6 +5,7 @@
       template: _.template(viewTemplate),
       events: {
         'click #showPlayListButton': 'onPlayListButtonClicked',
+        'click .now-playing-button': 'onNowPlayingButtonClicked',
         'click #searchBtn': 'onSearchButtonClicked'
       },
       initialize: function(options) {
@@ -23,7 +24,7 @@
           }
         });
         this.$('#songListView').append(songListView.$el);
-        SoundPlayer.getInstance().setup(this.$('#embedContainer'), function(tracks) {
+        SoundPlayer.getInstance().setup($('#embedContainer'), function(tracks) {
           collection.reset(tracks);
         });
       },
@@ -32,6 +33,7 @@
         return this;
       },
       onPlayListButtonClicked: function() {},
+      onNowPlayingButtonClicked: function() {},
       onSearchButtonClicked: function() {
         var _this = this;
 
