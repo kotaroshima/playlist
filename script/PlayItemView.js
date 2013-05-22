@@ -35,7 +35,7 @@
       * switches to remove confirm mode
       */
 
-      onRemoveConfirmButtonClicked: function() {
+      onRemoveConfirmButtonClicked: function(e) {
         var bRemoveConfirm;
 
         bRemoveConfirm = this.$el.hasClass(CLS_REMOVE_CONFIRM);
@@ -47,7 +47,7 @@
       * removes this item from play list
       */
 
-      onRemoveButtonClicked: function() {
+      onRemoveButtonClicked: function(e) {
         this.model.destroy();
         e.stopPropagation();
       }

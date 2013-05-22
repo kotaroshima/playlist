@@ -31,7 +31,7 @@ define(
       * Click event handler for remove confirm icon
       * switches to remove confirm mode
       ###
-      onRemoveConfirmButtonClicked:->
+      onRemoveConfirmButtonClicked:(e)->
         bRemoveConfirm = @$el.hasClass CLS_REMOVE_CONFIRM
         @$el.toggleClass CLS_REMOVE_CONFIRM, !bRemoveConfirm
         e.stopPropagation()
@@ -41,7 +41,7 @@ define(
       * Click event handler for [Remove] button
       * removes this item from play list
       ###
-      onRemoveButtonClicked:->
+      onRemoveButtonClicked:(e)->
         @model.destroy()
         e.stopPropagation()
         return

@@ -191,6 +191,14 @@ HR {
   }
 }
 
+.now-playing-button {
+  display: none;
+}
+
+.song-played .now-playing-button {
+  display: inline;
+}
+
 .playListAdded .item-actions BUTTON.addBtn {
   background-color: gray;
 }
