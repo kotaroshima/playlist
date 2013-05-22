@@ -66,8 +66,12 @@ require(
           back: true
       subscribers:
         SHOW_NOW_PLAYING_VIEW: 'showNowPlayingView'
+        PLAYER_PLAY: 'onSongPlayed'
       showNowPlayingView:->
         @showChild 'nowPlayingView'
+        return
+      onSongPlayed:->
+        @$el.addClass 'song-played'
         return
     return
 )

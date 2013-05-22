@@ -92,10 +92,14 @@
         }
       },
       subscribers: {
-        SHOW_NOW_PLAYING_VIEW: 'showNowPlayingView'
+        SHOW_NOW_PLAYING_VIEW: 'showNowPlayingView',
+        PLAYER_PLAY: 'onSongPlayed'
       },
       showNowPlayingView: function() {
         this.showChild('nowPlayingView');
+      },
+      onSongPlayed: function() {
+        this.$el.addClass('song-played');
       }
     });
   });
