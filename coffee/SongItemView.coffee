@@ -7,7 +7,7 @@ define(
 
       events:
         'click .song-item-view': 'onSongItemClicked'
-        'click .addBtn': 'onAddButtonClicked'
+        'click .add-button': 'onAddButtonClicked'
 
       render:->
         attrs = @model.attributes
@@ -21,14 +21,14 @@ define(
         Backbone.trigger 'PLAYLIST_ITEM_INSERT', model
         Backbone.trigger 'PLAYER_PLAY', model
         Backbone.trigger 'SHOW_NOW_PLAYING_VIEW'
-        @$el.addClass 'playListAdded'
+        @$el.addClass 'playlist-added'
         return
 
       # click event handler for add button
       # adds a song to the play list
       onAddButtonClicked:(e)->
         Backbone.trigger 'PLAYLIST_ITEM_ADD', @model.clone()
-        @$el.addClass 'playListAdded'
+        @$el.addClass 'playlist-added'
         e.stopPropagation()
         return
 )

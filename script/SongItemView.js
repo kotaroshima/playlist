@@ -5,7 +5,7 @@
       template: _.template(viewTemplate),
       events: {
         'click .song-item-view': 'onSongItemClicked',
-        'click .addBtn': 'onAddButtonClicked'
+        'click .add-button': 'onAddButtonClicked'
       },
       render: function() {
         var attrs;
@@ -21,11 +21,11 @@
         Backbone.trigger('PLAYLIST_ITEM_INSERT', model);
         Backbone.trigger('PLAYER_PLAY', model);
         Backbone.trigger('SHOW_NOW_PLAYING_VIEW');
-        this.$el.addClass('playListAdded');
+        this.$el.addClass('playlist-added');
       },
       onAddButtonClicked: function(e) {
         Backbone.trigger('PLAYLIST_ITEM_ADD', this.model.clone());
-        this.$el.addClass('playListAdded');
+        this.$el.addClass('playlist-added');
         e.stopPropagation();
       }
     });

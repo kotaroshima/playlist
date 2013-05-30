@@ -199,6 +199,18 @@ HR {
   display: inline;
 }
 
-.playListAdded .item-actions BUTTON.addBtn {
-  background-color: gray;
+.add-button {
+  background-image: url('../images/add_button.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  width: 32px;
+  height: 32px;
+}
+
+.playlist-added .item-actions BUTTON.add-button {
+  opacity: 0.50;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.50;
+  -ms-filter: "alpha(opacity=50)";
 }
