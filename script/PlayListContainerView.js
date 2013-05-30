@@ -52,7 +52,7 @@
         });
         view = this.listView = new Backpack.ListView({
           collection: collection,
-          itemClass: PlayItemView,
+          itemView: PlayItemView,
           plugins: [Backpack.ContainerPlugin, Backpack.SortablePlugin],
           subscribers: {
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
