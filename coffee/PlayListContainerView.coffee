@@ -1,8 +1,8 @@
 ###
 * A view to display/manage playlists
 ###
-CLS_PLAYLIST_EDIT = 'playlist-edit'
 CLS_NOW_PLAYING = 'now-playing'
+CLS_PLAYLIST_EDIT = 'playlist_edit'
 
 define(
   ['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'PlayItemView', 'text!template/PlayListContainerView.html'],
@@ -41,15 +41,11 @@ define(
             return
 
         # setup list view
-        view = @listView = new Backpack.ListView
+        view = @listView = new Backpack.EditableListView
           collection: collection
-          itemClass: PlayItemView
-          plugins: [Backpack.ContainerPlugin, Backpack.SortablePlugin]
+          itemView: PlayItemView
           subscribers:
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
-          sortable: false
-          sortableOptions:
-            handle: ".reorder-handle"
           onCurrentIndexUpdated:(index)->
             if @_nowPlayingView
               @_nowPlayingView.$el.removeClass CLS_NOW_PLAYING
@@ -59,9 +55,6 @@ define(
             return
         view.render()
         @$('#playlist-view').append view.$el
-
-        # turn off edit mode
-        @setEditMode false
         return
 
       ###
@@ -77,19 +70,6 @@ define(
       ###
       onSongListButtonClicked:->
 
-      ###
-      * Turn on/off edit mode
-      * When in edit mode, allows deleting/drag & drop play list items
-      * @param {Boolean} bEdit if true, turns on edit mode. If false, turns off edit mode.
-      ###
-      setEditMode:(bEdit)->
-        @listView.setSortable bEdit
-        if bEdit
-          @$el.addClass CLS_PLAYLIST_EDIT
-        else
-          @$el.removeClass CLS_PLAYLIST_EDIT
-        return
-
       onNowPlayingButtonClicked:->
 
       ###
@@ -97,7 +77,8 @@ define(
       * Turns on edit mode when clicked
       ###
       onEditButtonClicked:->
-        @setEditMode true
+        @listView.setEditable true
+        @$el.toggleClass CLS_PLAYLIST_EDIT, true
         return
 
       ###
@@ -105,6 +86,7 @@ define(
       * Turns off edit mode when clicked
       ###
       onDoneButtonClicked:->
-        @setEditMode false
+        @listView.setEditable false
+        @$el.toggleClass CLS_PLAYLIST_EDIT, false
         return
 )

@@ -17,7 +17,7 @@ define(
 
         songListView = new Backpack.ListView
           collection: collection
-          itemClass: SongItemView
+          itemView: SongItemView
           subscribers:
             SONGLIST_LOADING: 'setLoading'
         @$('#songListView').append songListView.$el

@@ -1,0 +1,159 @@
+@CHARSET "UTF-8";
+BODY {
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+H1.title {
+  text-align: center;
+}
+
+A {
+  text-decoration: none;
+  color: #222222;
+}
+A:hover {
+  text-decoration: underline;
+}
+
+HR {
+  margin: 0;
+}
+
+.header-row {
+  display: table;
+  background-color: #E0E0E0;
+  width: 100%;
+}
+.header-row > * {
+  display: table-cell;
+  vertical-align: middle;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.header-row .left-cell {
+  width: 150px;
+  text-align: left;
+  padding-left: 10px;
+}
+.header-row .right-cell {
+  width: 150px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.search-row {
+  background-color: #E0E0E0;
+  text-align: right;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+#stack-view {
+  max-width: 800px;
+}
+
+.item-view {
+  display: table;
+  height: 32px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+.item-view > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+.item-view .user-name {
+  color: #999;
+  font-size: small;
+}
+.item-view .item-actions {
+  text-align: right;
+  padding-right: 15px;
+}
+.item-view .item-actions BUTTON.action-button {
+  display: inline;
+  height: 32px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-color: green;
+  color: white;
+  border: 0;
+}
+
+.now-playing-text {
+  display: none;
+}
+
+.now-playing {
+  background-color: #FFEFC6;
+  color: #735005;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.now-playing .now-playing-text {
+  display: block;
+  font-style: italic;
+  font-weight: bold;
+  color: blue;
+}
+
+.edit-button {
+  display: inline;
+}
+
+.done-button {
+  display: none;
+}
+
+.playlist_edit .edit-button {
+  display: none;
+}
+.playlist_edit .done-button {
+  display: inline;
+}
+
+.song-list-button {
+  float: left;
+}
+
+.playlist_edit .song-list-button, .playlist_edit .edit-button, .playlist_edit .play-button {
+  display: none;
+}
+.playlist_edit .done-button {
+  display: inline;
+}
+
+.play-item-view {
+  display: table;
+  width: 100%;
+}
+.play-item-view > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.now-playing-button {
+  display: none;
+}
+
+.song-played .now-playing-button {
+  display: inline;
+}
+
+.add-button {
+  background-image: url("../images/add_button.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  width: 32px;
+  height: 32px;
+}
+
+.playlist-added .item-actions BUTTON.add-button {
+  opacity: 0.50;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.50;
+  -ms-filter: "alpha(opacity=50)";
+}
