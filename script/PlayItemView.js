@@ -5,17 +5,11 @@
 
 
 (function() {
-  var CLS_REMOVE_CONFIRM;
-
-  CLS_REMOVE_CONFIRM = 'remove-confirm';
-
   define(['Underscore', 'Backpack', 'text!template/PlayItemView.html'], function(_, Backpack, viewTemplate) {
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        'click .play-item-view': 'onPlayItemClicked',
-        'click .delete-icon': 'onRemoveConfirmButtonClicked',
-        'click .delete-button': 'onRemoveButtonClicked'
+        'click .play-item-view': 'onPlayItemClicked'
       },
       render: function() {
         this.$el.html(this.template(this.model.attributes));
@@ -29,27 +23,6 @@
       onPlayItemClicked: function() {
         Backbone.trigger('PLAYER_PLAY', this.model);
         Backbone.trigger('SHOW_NOW_PLAYING_VIEW');
-      },
-      /*
-      * Click event handler for remove confirm icon
-      * switches to remove confirm mode
-      */
-
-      onRemoveConfirmButtonClicked: function(e) {
-        var bRemoveConfirm;
-
-        bRemoveConfirm = this.$el.hasClass(CLS_REMOVE_CONFIRM);
-        this.$el.toggleClass(CLS_REMOVE_CONFIRM, !bRemoveConfirm);
-        e.stopPropagation();
-      },
-      /*
-      * Click event handler for [Remove] button
-      * removes this item from play list
-      */
-
-      onRemoveButtonClicked: function(e) {
-        this.model.destroy();
-        e.stopPropagation();
       }
     });
   });
