@@ -107,63 +107,31 @@ HR {
   display: none;
 }
 
-.delete-icon {
-  background-image: url("../images/delete_control.jpg");
-  background-position: no-repeat;
-  width: 34px;
-  height: 33px;
-  border: none;
-  padding: 0;
+.playlist_edit .edit-button {
   display: none;
 }
-
-.reorder-handle {
-  background-image: url("../images/row_reorder.jpg");
-  background-repeat: no-repeat;
-  background-position: 8px center;
-  width: 32px;
-  height: 32px;
-  display: none;
+.playlist_edit .done-button {
+  display: inline;
 }
 
 .song-list-button {
   float: left;
 }
 
-.item-view .item-actions BUTTON.delete-button {
-  height: 32px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  background-color: red;
-  color: white;
-  border: 0;
+.playlist_edit .song-list-button, .playlist_edit .edit-button, .playlist_edit .play-button {
   display: none;
+}
+.playlist_edit .done-button {
+  display: inline;
 }
 
-.playlist-edit .song-list-button, .playlist-edit .edit-button, .playlist-edit .play-button {
-  display: none;
+.play-item-view {
+  display: table;
+  width: 100%;
 }
-.playlist-edit .done-button {
-  display: inline;
-}
-.playlist-edit .delete-cell {
-  width: 40px;
-}
-.playlist-edit .delete-icon {
-  display: inline;
-}
-.playlist-edit .remove-confirm .delete-icon {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-}
-.playlist-edit .reorder-handle {
-  display: inline-block;
-}
-.playlist-edit .remove-confirm .reorder-handle {
-  display: none;
-}
-.playlist-edit .remove-confirm .item-actions BUTTON.delete-button {
-  display: inline;
+.play-item-view > * {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .now-playing-button {
