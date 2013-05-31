@@ -1,4 +1,6 @@
-# A view for each songs in the main page
+###
+* A view for each songs in the main page
+###
 define(
   ['Underscore', 'Backpack', 'text!template/SongItemView.html'],
   (_, Backpack, viewTemplate)->
@@ -10,8 +12,7 @@ define(
         'click .add-button': 'onAddButtonClicked'
 
       render:->
-        attrs = @model.attributes
-        @$el.html @template attrs
+        @$el.html @template @model.attributes
         @
 
       # click event handler for song list item

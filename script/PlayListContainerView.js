@@ -7,9 +7,9 @@
 (function() {
   var CLS_NOW_PLAYING, CLS_PLAYLIST_EDIT;
 
-  CLS_PLAYLIST_EDIT = 'playlist-edit';
-
   CLS_NOW_PLAYING = 'now-playing';
+
+  CLS_PLAYLIST_EDIT = 'playlist_edit';
 
   define(['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'PlayItemView', 'text!template/PlayListContainerView.html'], function($, Backpack, CurrentModelPlugin, PlayItemView, viewTemplate) {
     return Backpack.View.extend({
@@ -50,16 +50,11 @@
             }
           }
         });
-        view = this.listView = new Backpack.ListView({
+        view = this.listView = new Backpack.EditableListView({
           collection: collection,
           itemView: PlayItemView,
-          plugins: [Backpack.ContainerPlugin, Backpack.SortablePlugin],
           subscribers: {
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
-          },
-          sortable: false,
-          sortableOptions: {
-            handle: ".reorder-handle"
           },
           onCurrentIndexUpdated: function(index) {
             if (this._nowPlayingView) {
@@ -73,7 +68,6 @@
         });
         view.render();
         this.$('#playlist-view').append(view.$el);
-        this.setEditMode(false);
       },
       /*
       * Renders template HTML
@@ -89,20 +83,6 @@
       */
 
       onSongListButtonClicked: function() {},
-      /*
-      * Turn on/off edit mode
-      * When in edit mode, allows deleting/drag & drop play list items
-      * @param {Boolean} bEdit if true, turns on edit mode. If false, turns off edit mode.
-      */
-
-      setEditMode: function(bEdit) {
-        this.listView.setSortable(bEdit);
-        if (bEdit) {
-          this.$el.addClass(CLS_PLAYLIST_EDIT);
-        } else {
-          this.$el.removeClass(CLS_PLAYLIST_EDIT);
-        }
-      },
       onNowPlayingButtonClicked: function() {},
       /*
       * Click event handler for [Edit] button
@@ -110,7 +90,8 @@
       */
 
       onEditButtonClicked: function() {
-        this.setEditMode(true);
+        this.listView.setEditable(true);
+        this.$el.toggleClass(CLS_PLAYLIST_EDIT, true);
       },
       /*
       * Click event handler for [Edit] button
@@ -118,7 +99,8 @@
       */
 
       onDoneButtonClicked: function() {
-        this.setEditMode(false);
+        this.listView.setEditable(false);
+        this.$el.toggleClass(CLS_PLAYLIST_EDIT, false);
       }
     });
   });
