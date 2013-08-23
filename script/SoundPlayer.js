@@ -19,11 +19,6 @@
           limit: 10,
           filter: 'streamable'
         }, callback);
-        SC.get('/tracks', {
-          order: 'hotness',
-          limit: 10,
-          filter: 'streamable'
-        }, callback);
       },
       play: function(model) {
         var url,

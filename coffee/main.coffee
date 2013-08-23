@@ -1,14 +1,14 @@
 requirejs.config
   paths:
-    text: ['http://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.3/text']
-    jQuery: ['http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery']
-    jQueryUI: ['http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui']
-    jQueryUITouchPunch: ['http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min']
-    Underscore: ['http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore']
-    Backbone: ['http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone']
+    text: ['//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.3/text']
+    jQuery: ['//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery']
+    jQueryUI: ['//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui']
+    jQueryUITouchPunch: ['//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min']
+    Underscore: ['//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore']
+    Backbone: ['//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone']
     Backpack: ['lib/backpack/Backpack-all']
-    SoundCloud: ['http://connect.soundcloud.com/sdk']
-    SoundCloudAPI: ['https://w.soundcloud.com/player/api']
+    SoundCloud: ['//connect.soundcloud.com/sdk']
+    SoundCloudAPI: ['//w.soundcloud.com/player/api']
   shim:
     text:
       exports: 'text'
@@ -65,11 +65,8 @@ require(
           event: 'onBackButtonClicked'
           back: true
       subscribers:
-        SHOW_NOW_PLAYING_VIEW: 'showNowPlayingView'
+        SHOW_VIEW: 'showChild'
         PLAYER_PLAY: 'onSongPlayed'
-      showNowPlayingView:->
-        @showChild 'nowPlayingView'
-        return
       onSongPlayed:->
         @$el.addClass 'song-played'
         return
