@@ -23,8 +23,7 @@ define(
       * Play the song corresponding to this view
       ###
       onPlayItemClicked:->
-        console.log 'onPlayItemClicked'
         Backbone.trigger 'PLAYER_PLAY', @model
-        Backbone.trigger 'SHOW_NOW_PLAYING_VIEW'
+        Backbone.trigger 'SHOW_VIEW', 'nowPlayingView'
         return
 )

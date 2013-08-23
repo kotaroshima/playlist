@@ -22,7 +22,7 @@
         model = this.model.clone();
         Backbone.trigger('PLAYLIST_ITEM_INSERT', model);
         Backbone.trigger('PLAYER_PLAY', model);
-        Backbone.trigger('SHOW_NOW_PLAYING_VIEW');
+        Backbone.trigger('SHOW_VIEW', 'nowPlayingView');
         this.$el.addClass('playlist-added');
       },
       onAddButtonClicked: function(e) {

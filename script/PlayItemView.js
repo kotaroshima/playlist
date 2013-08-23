@@ -25,7 +25,7 @@
 
       onPlayItemClicked: function() {
         Backbone.trigger('PLAYER_PLAY', this.model);
-        Backbone.trigger('SHOW_NOW_PLAYING_VIEW');
+        Backbone.trigger('SHOW_VIEW', 'nowPlayingView');
       }
     });
   });

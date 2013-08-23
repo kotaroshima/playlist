@@ -1,6 +1,8 @@
 define(
   ['Backpack', 'SongItemView', 'SoundPlayer', 'text!template/SongListContainerView.html'],
   (Backpack, SongItemView, SoundPlayer, viewTemplate)->
+    player = SoundPlayer.getInstance()
+
     Backpack.View.extend
       template: _.template viewTemplate
       events:
@@ -22,7 +24,7 @@ define(
             SONGLIST_LOADING: 'setLoading'
         @$('#songListView').append songListView.$el
 
-        SoundPlayer.getInstance().setup $('#embedContainer'), (tracks)->
+        player.setup $('#embedContainer'), (tracks)->
           collection.reset tracks
           return
         return
@@ -36,7 +38,11 @@ define(
       onNowPlayingButtonClicked:->
 
       onSearchButtonClicked:->
-        SoundPlayer.getInstance().loadTracks { q: $('#searchBox').val() }, (tracks)=>
+        @search $('#searchBox').val()
+        return
+
+      search:(searchString)->
+        player.loadTracks { q: searchString }, (tracks)=>
           @collection.reset tracks
           return
         return

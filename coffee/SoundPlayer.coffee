@@ -18,9 +18,6 @@ define(
         @domNode = node
         # by default, show tracks ordered by 'hotness'
         @loadTracks { order: 'hotness', limit: 10, filter: 'streamable' }, callback
-        SC.get '/tracks',
-          { order: 'hotness', limit: 10, filter: 'streamable' },
-          callback
         return
 
       play: (model)->
