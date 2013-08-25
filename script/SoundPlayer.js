@@ -33,7 +33,7 @@
             var widget;
 
             _this.domNode.html(response.html);
-            widget = _this._widget = SC.Widget($('#embedContainer IFRAME').get(0));
+            widget = _this._widget = SC.Widget($('#embed-container IFRAME').get(0));
             widget.bind(SC.Widget.Events.FINISH, function() {
               Backbone.trigger('SONG_FINISHED');
             });

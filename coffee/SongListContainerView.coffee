@@ -6,13 +6,19 @@ define(
     Backpack.View.extend
       template: _.template viewTemplate
       events:
-        'click #showPlayListButton': 'onPlayListButtonClicked'
+        'click #show-playlist-button': 'onPlayListButtonClicked'
         'click .now-playing-button': 'onNowPlayingButtonClicked'
-        'click #searchBtn': 'onSearchButtonClicked'
+        'click #search-button': 'onSearchButtonClicked'
 
       initialize:(options)->
         Backpack.View::initialize.apply @, arguments
         @render()
+
+        @searchBox = @$ '#search-box'
+        @searchBox.keyup (e)=>
+          if e.which == 13
+            @search @searchBox.val()
+          return
 
         collection = @collection = new Backpack.Collection null,
           model: Backpack.Model
@@ -22,9 +28,9 @@ define(
           itemView: SongItemView
           subscribers:
             SONGLIST_LOADING: 'setLoading'
-        @$('#songListView').append songListView.$el
+        @$('#song-list-view').append songListView.$el
 
-        player.setup $('#embedContainer'), (tracks)->
+        player.setup $('#embed-container'), (tracks)->
           collection.reset tracks
           return
         return
@@ -38,7 +44,7 @@ define(
       onNowPlayingButtonClicked:->
 
       onSearchButtonClicked:->
-        @search $('#searchBox').val()
+        @search @searchBox.val()
         return
 
       search:(searchString)->
