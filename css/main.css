@@ -65,6 +65,11 @@ HR {
   font-size: small;
   text-align: left;
 }
+.item-view:hover {
+  background-color: #FFEFC6;
+  color: #735005;
+  cursor: pointer;
+}
 
 .song-item-view {
   display: table;
@@ -94,8 +99,6 @@ HR {
 }
 
 .now-playing {
-  background-color: #FFEFC6;
-  color: #735005;
   -moz-border-radius: 6px;
   border-radius: 6px;
 }

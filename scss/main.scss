@@ -80,6 +80,12 @@ HR {
     font-size: small;
     text-align: left;
   }
+
+  &:hover {
+    background-color: #FFEFC6;
+    color: #735005;
+    cursor: pointer;
+  }
 }
 
 .song-item-view {
@@ -112,8 +118,6 @@ HR {
 }
 
 .now-playing {
-  background-color: #FFEFC6;
-  color: #735005;
   @include round-corner(6px);
 
   .now-playing-text {
