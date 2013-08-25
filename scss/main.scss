@@ -69,19 +69,27 @@ HR {
 }
 
 .item-view {
-  display: table;
-  height: 32px;
-  width: 100%;
   border: 1px solid #E0E0E0;
 
-  > * {
-    display: table-cell;
-    vertical-align: middle;
+  .song-title {
+    text-align: left;
   }
 
   .user-name {
     color: #999;
-    font-size:small
+    font-size: small;
+    text-align: left;
+  }
+}
+
+.song-item-view {
+  display: table;
+  height: 32px;
+  width: 100%;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
   }
 
   .item-actions {
