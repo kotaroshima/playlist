@@ -13,7 +13,24 @@
         'click .add-button': 'onAddButtonClicked'
       },
       render: function() {
-        this.$el.html(this.template(this.model.attributes));
+        var attr;
+
+        attr = _.extend(this.model.attributes, {
+          formatDuration: function(duration) {
+            var h, ret;
+
+            duration = Math.floor(duration / 1000);
+            ret = '';
+            h = parseInt(duration / 3600);
+            if (h > 0) {
+              ret += h + ':' + ('0' + parseInt((duration - 3600 * h) / 60)).slice(-2);
+            } else {
+              ret += parseInt(duration / 60);
+            }
+            return ret += ':' + ('0' + (duration % 60)).slice(-2);
+          }
+        });
+        this.$el.html(this.template(attr));
         return this;
       },
       onSongItemClicked: function() {
