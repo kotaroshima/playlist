@@ -29,7 +29,7 @@ define(
             @domNode.html response.html
 
             # connect to 'SC.Widget.Events.FINISH' to notify to play next song
-            widget = @_widget = SC.Widget $('#embedContainer IFRAME').get(0)
+            widget = @_widget = SC.Widget $('#embed-container IFRAME').get(0)
             widget.bind SC.Widget.Events.FINISH, ->
               Backbone.trigger 'SONG_FINISHED'
               return

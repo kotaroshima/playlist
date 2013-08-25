@@ -7,15 +7,22 @@
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
-        'click #showPlayListButton': 'onPlayListButtonClicked',
+        'click #show-playlist-button': 'onPlayListButtonClicked',
         'click .now-playing-button': 'onNowPlayingButtonClicked',
-        'click #searchBtn': 'onSearchButtonClicked'
+        'click #search-button': 'onSearchButtonClicked'
       },
       initialize: function(options) {
-        var collection, songListView;
+        var collection, songListView,
+          _this = this;
 
         Backpack.View.prototype.initialize.apply(this, arguments);
         this.render();
+        this.searchBox = this.$('#search-box');
+        this.searchBox.keyup(function(e) {
+          if (e.which === 13) {
+            _this.search(_this.searchBox.val());
+          }
+        });
         collection = this.collection = new Backpack.Collection(null, {
           model: Backpack.Model
         });
@@ -26,8 +33,8 @@
             SONGLIST_LOADING: 'setLoading'
           }
         });
-        this.$('#songListView').append(songListView.$el);
-        player.setup($('#embedContainer'), function(tracks) {
+        this.$('#song-list-view').append(songListView.$el);
+        player.setup($('#embed-container'), function(tracks) {
           collection.reset(tracks);
         });
       },
@@ -38,7 +45,7 @@
       onPlayListButtonClicked: function() {},
       onNowPlayingButtonClicked: function() {},
       onSearchButtonClicked: function() {
-        this.search($('#searchBox').val());
+        this.search(this.searchBox.val());
       },
       search: function(searchString) {
         var _this = this;
