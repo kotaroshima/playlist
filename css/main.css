@@ -57,8 +57,21 @@ HR {
 .item-view {
   border: 1px solid #e0e0e0;
 }
-.item-view .song-title {
+.item-view .song-info {
+  display: table;
+  width: 100%;
+}
+.item-view .song-info > * {
+  display: table-cell;
+}
+.item-view .song-info .song-title {
   text-align: left;
+  font-weight: bold;
+}
+.item-view .song-info .song-duration {
+  width: 80px;
+  text-align: right;
+  padding-right: 10px;
 }
 .item-view .user-name {
   color: #999;
@@ -83,6 +96,7 @@ HR {
 .song-item-view .item-actions {
   text-align: right;
   padding-right: 15px;
+  width: 50px;
 }
 .song-item-view .item-actions BUTTON.action-button {
   display: inline;

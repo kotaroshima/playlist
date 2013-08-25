@@ -15,7 +15,17 @@ define(
         return
 
       render:->
-        @$el.html @template @model.attributes
+        attr = _.extend @model.attributes,
+          formatDuration:(duration)->
+            duration = Math.floor duration/1000
+            ret = ''
+            h = parseInt duration/3600
+            if h > 0
+              ret += h+':'+('0'+parseInt((duration-3600*h)/60)).slice(-2)
+            else
+              ret += parseInt duration/60
+            ret += ':'+('0'+(duration%60)).slice(-2)
+        @$el.html @template attr
         @
 
       ###

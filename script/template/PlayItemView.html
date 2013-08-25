@@ -6,7 +6,10 @@
   </span>
   <span style="padding-left:10px;">
     <div class="now-playing-text">Now Playing...</div>
-    <div class="song-title"><%- title %></div>
+    <div class="song-info">
+      <span class="song-title"><%- title %></span>
+      <span class="song-duration"><%- formatDuration(duration) %></span>
+    </div>
     <div class="user-name"><%- user.username %></div>
   </span>
 </div>

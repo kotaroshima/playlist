@@ -71,8 +71,24 @@ HR {
 .item-view {
   border: 1px solid #E0E0E0;
 
-  .song-title {
-    text-align: left;
+  .song-info {
+    display: table;
+    width: 100%;
+
+    > * {
+      display: table-cell;
+    }
+
+    .song-title {
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .song-duration {
+      width: 80px;
+      text-align: right;
+      padding-right: 10px;
+    }
   }
 
   .user-name {
@@ -101,6 +117,7 @@ HR {
   .item-actions {
     text-align: right;
     padding-right: 15px;
+    width: 50px;
 
     BUTTON.action-button {
       display: inline;
