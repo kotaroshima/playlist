@@ -117,22 +117,8 @@ HR {
   display: none;
 }
 
-.playlist_edit .edit-button {
-  display: none;
-}
-.playlist_edit .done-button {
-  display: inline;
-}
-
 .song-list-button {
   float: left;
-}
-
-.playlist_edit .song-list-button, .playlist_edit .edit-button, .playlist_edit .play-button {
-  display: none;
-}
-.playlist_edit .done-button {
-  display: inline;
 }
 
 .play-item-view {
@@ -150,6 +136,16 @@ HR {
 
 .song-played .now-playing-button {
   display: inline;
+}
+
+.playlist_edit .edit-button {
+  display: none;
+}
+.playlist_edit .done-button {
+  display: inline;
+}
+.playlist_edit .song-list-button, .playlist_edit .edit-button, .playlist_edit .play-button, .playlist_edit .now-playing-button {
+  display: none;
 }
 
 .add-button {
