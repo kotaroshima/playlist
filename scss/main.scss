@@ -6,13 +6,31 @@
 }
 
 @mixin default-font {
-  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+}
+
+@mixin linear-gradient($color1, $color2) {
+  background-color: $color2;
+  background-image: -moz-linear-gradient($color1, $color2);
+  background-image: -webkit-linear-gradient($color1, $color2);
+  background-image: linear-gradient($color1, $color2);
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 BODY {
   @include default-font;
   padding: 0;
   margin: 0;
+  text-align: center;
+
+  > * {
+    margin: 0 auto;
+  }
 }
 
 H1.title {
@@ -28,13 +46,10 @@ A {
   }
 }
 
-HR {
-  margin: 0;
-}
-
 .header-row {
+  @include linear-gradient(#fafafa, #eaeaea);
+  border: 1px solid #d5d5d5;
   display: table;
-  background-color: #E0E0E0;
   width: 100%;
 
   > * {
@@ -45,27 +60,56 @@ HR {
   }
 
   .left-cell {
-    width: 150px;
+    width: 170px;
     text-align: left;
     padding-left: 10px;
   }
 
   .right-cell {
-    width: 150px;
+    width: 170px;
     text-align: right;
     padding-right: 10px;
   }
 }
 
 .search-row {
+  @include linear-gradient(#f9f9f9, #f3f3f3);
   background-color: #E0E0E0;
+  border-left: 1px solid #d5d5d5;
+  border-right: 1px solid #d5d5d5;
   text-align: right;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 5px 10px;
+}
+
+#search-box {
+  width: 300px;
 }
 
 #stack-view {
   max-width:800px;
+
+  BUTTON.standard-button {
+    @include round-corner(3px);
+    @include linear-gradient(#fafafa, #eaeaea);
+    border: 1px solid #ddd;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+    height: 24px;
+
+    &:hover {
+      @include linear-gradient(#eaeaea, #dadada);
+      border-color: #ccc;
+    }
+  }
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.user-name {
+  color: #999;
 }
 
 .item-view {
@@ -81,7 +125,6 @@ HR {
 
     .song-title {
       text-align: left;
-      font-weight: bold;
     }
 
     .song-duration {
@@ -92,7 +135,6 @@ HR {
   }
 
   .user-name {
-    color: #999;
     font-size: small;
     text-align: left;
   }
@@ -102,6 +144,10 @@ HR {
     color: #735005;
     cursor: pointer;
   }
+}
+
+#song-list-view {
+  border: 1px solid #d5d5d5;
 }
 
 .song-item-view {
