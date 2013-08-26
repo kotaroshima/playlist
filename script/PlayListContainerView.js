@@ -9,9 +9,9 @@
 
   CLS_NOW_PLAYING = 'now-playing';
 
-  CLS_PLAYLIST_EDIT = 'playlist_edit';
+  CLS_PLAYLIST_EDIT = 'playlist-edit';
 
-  define(['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'PlayItemView', 'text!template/PlayListContainerView.html'], function($, Backpack, CurrentModelPlugin, PlayItemView, viewTemplate) {
+  define(['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'SongItemView', 'text!template/PlayListContainerView.html'], function($, Backpack, CurrentModelPlugin, SongItemView, viewTemplate) {
     return Backpack.View.extend({
       template: _.template(viewTemplate),
       events: {
@@ -52,7 +52,13 @@
         });
         view = this.listView = new Backpack.EditableListView({
           collection: collection,
-          itemView: PlayItemView,
+          itemView: SongItemView,
+          itemOptions: {
+            onSongItemClicked: function() {
+              Backbone.trigger('PLAYER_PLAY', this.model);
+              Backbone.trigger('SHOW_VIEW', 'nowPlayingView');
+            }
+          },
           subscribers: {
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
           },
