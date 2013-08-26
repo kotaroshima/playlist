@@ -1,8 +1,18 @@
 @CHARSET "UTF-8";
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
 BODY {
-  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
   padding: 0;
   margin: 0;
+  text-align: center;
+}
+BODY > * {
+  margin: 0 auto;
 }
 
 H1.title {
@@ -17,13 +27,13 @@ A:hover {
   text-decoration: underline;
 }
 
-HR {
-  margin: 0;
-}
-
 .header-row {
+  background-color: #eaeaea;
+  background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+  background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+  background-image: linear-gradient(#fafafa, #eaeaea);
+  border: 1px solid #d5d5d5;
   display: table;
-  background-color: #E0E0E0;
   width: 100%;
 }
 .header-row > * {
@@ -33,25 +43,62 @@ HR {
   padding-bottom: 10px;
 }
 .header-row .left-cell {
-  width: 150px;
+  width: 170px;
   text-align: left;
   padding-left: 10px;
 }
 .header-row .right-cell {
-  width: 150px;
+  width: 170px;
   text-align: right;
   padding-right: 10px;
 }
 
 .search-row {
+  background-color: #f3f3f3;
+  background-image: -moz-linear-gradient(#f9f9f9, #f3f3f3);
+  background-image: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
+  background-image: linear-gradient(#f9f9f9, #f3f3f3);
   background-color: #E0E0E0;
+  border-left: 1px solid #d5d5d5;
+  border-right: 1px solid #d5d5d5;
   text-align: right;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 5px 10px;
+}
+
+#search-box {
+  width: 300px;
 }
 
 #stack-view {
   max-width: 800px;
+}
+#stack-view BUTTON.standard-button {
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #eaeaea;
+  background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+  background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+  background-image: linear-gradient(#fafafa, #eaeaea);
+  border: 1px solid #dddddd;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  height: 24px;
+}
+#stack-view BUTTON.standard-button:hover {
+  background-color: #dadada;
+  background-image: -moz-linear-gradient(#eaeaea, #dadada);
+  background-image: -webkit-linear-gradient(#eaeaea, #dadada);
+  background-image: linear-gradient(#eaeaea, #dadada);
+  border-color: #ccc;
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.user-name {
+  color: #999;
 }
 
 .item-view {
@@ -66,7 +113,6 @@ HR {
 }
 .item-view .song-info .song-title {
   text-align: left;
-  font-weight: bold;
 }
 .item-view .song-info .song-duration {
   width: 80px;
@@ -74,7 +120,6 @@ HR {
   padding-right: 10px;
 }
 .item-view .user-name {
-  color: #999;
   font-size: small;
   text-align: left;
 }
@@ -82,6 +127,10 @@ HR {
   background-color: #FFEFC6;
   color: #735005;
   cursor: pointer;
+}
+
+#song-list-view {
+  border: 1px solid #d5d5d5;
 }
 
 .song-item-view {
