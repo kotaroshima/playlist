@@ -33,15 +33,7 @@
         this.$el.html(this.template(attr));
         return this;
       },
-      onSongItemClicked: function() {
-        var model;
-
-        model = this.model.clone();
-        Backbone.trigger('PLAYLIST_ITEM_INSERT', model);
-        Backbone.trigger('PLAYER_PLAY', model);
-        Backbone.trigger('SHOW_VIEW', 'nowPlayingView');
-        this.$el.addClass('playlist-added');
-      },
+      onSongItemClicked: function() {},
       onAddButtonClicked: function(e) {
         Backbone.trigger('PLAYLIST_ITEM_ADD', this.model.clone());
         this.$el.addClass('playlist-added');

@@ -29,6 +29,17 @@
         songListView = new Backpack.ListView({
           collection: collection,
           itemView: SongItemView,
+          itemOptions: {
+            onSongItemClicked: function() {
+              var model;
+
+              model = this.model.clone();
+              Backbone.trigger('PLAYLIST_ITEM_INSERT', model);
+              Backbone.trigger('PLAYER_PLAY', model);
+              Backbone.trigger('SHOW_VIEW', 'nowPlayingView');
+              this.$el.addClass('playlist-added');
+            }
+          },
           subscribers: {
             SONGLIST_LOADING: 'setLoading'
           }

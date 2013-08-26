@@ -184,13 +184,8 @@ A:hover {
   float: left;
 }
 
-.play-item-view {
-  display: table;
-  width: 100%;
-}
-.play-item-view > * {
-  display: table-cell;
-  vertical-align: middle;
+#playlist-view .editable-container .song-item-view > .item-actions {
+  display: none;
 }
 
 .now-playing-button {
@@ -201,13 +196,13 @@ A:hover {
   display: inline;
 }
 
-.playlist_edit .edit-button {
+.playlist-edit .edit-button {
   display: none;
 }
-.playlist_edit .done-button {
+.playlist-edit .done-button {
   display: inline;
 }
-.playlist_edit .song-list-button, .playlist_edit .edit-button, .playlist_edit .play-button, .playlist_edit .now-playing-button {
+.playlist-edit .song-list-button, .playlist-edit .edit-button, .playlist-edit .play-button, .playlist-edit .now-playing-button {
   display: none;
 }
 

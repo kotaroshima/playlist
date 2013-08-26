@@ -203,14 +203,8 @@ A {
   float:left;
 }
 
-.play-item-view {
-  display: table;
-  width: 100%;
-
-  > * {
-    display: table-cell;
-    vertical-align: middle;
-  }
+#playlist-view .editable-container .song-item-view > .item-actions {
+  display: none;
 }
 
 .now-playing-button {
@@ -221,7 +215,7 @@ A {
   display: inline;
 }
 
-.playlist_edit {
+.playlist-edit {
   .edit-button {
     display: none;
   }

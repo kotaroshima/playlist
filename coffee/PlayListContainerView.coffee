@@ -2,11 +2,11 @@
 * A view to display/manage playlists
 ###
 CLS_NOW_PLAYING = 'now-playing'
-CLS_PLAYLIST_EDIT = 'playlist_edit'
+CLS_PLAYLIST_EDIT = 'playlist-edit'
 
 define(
-  ['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'PlayItemView', 'text!template/PlayListContainerView.html'],
-  ($, Backpack, CurrentModelPlugin, PlayItemView, viewTemplate)->
+  ['jQueryUITouchPunch', 'Backpack', 'CurrentModelPlugin', 'SongItemView', 'text!template/PlayListContainerView.html'],
+  ($, Backpack, CurrentModelPlugin, SongItemView, viewTemplate)->
     Backpack.View.extend
       template: _.template viewTemplate # TODO : i18n
 
@@ -43,7 +43,12 @@ define(
         # setup list view
         view = @listView = new Backpack.EditableListView
           collection: collection
-          itemView: PlayItemView
+          itemView: SongItemView
+          itemOptions:
+            onSongItemClicked:->
+              Backbone.trigger 'PLAYER_PLAY', @model
+              Backbone.trigger 'SHOW_VIEW', 'nowPlayingView'
+              return
           subscribers:
             PLAYLIST_INDEX_UPDATED: 'onCurrentIndexUpdated'
           onCurrentIndexUpdated:(index)->

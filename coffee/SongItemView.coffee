@@ -28,12 +28,6 @@ define(
       # click event handler for song list item
       # plays the song and adds a song to the play list
       onSongItemClicked:->
-        model = @model.clone()
-        Backbone.trigger 'PLAYLIST_ITEM_INSERT', model
-        Backbone.trigger 'PLAYER_PLAY', model
-        Backbone.trigger 'SHOW_VIEW', 'nowPlayingView'
-        @$el.addClass 'playlist-added'
-        return
 
       # click event handler for add button
       # adds a song to the play list

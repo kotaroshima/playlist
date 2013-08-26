@@ -26,6 +26,14 @@ define(
         songListView = new Backpack.ListView
           collection: collection
           itemView: SongItemView
+          itemOptions:
+            onSongItemClicked:->
+              model = @model.clone()
+              Backbone.trigger 'PLAYLIST_ITEM_INSERT', model
+              Backbone.trigger 'PLAYER_PLAY', model
+              Backbone.trigger 'SHOW_VIEW', 'nowPlayingView'
+              @$el.addClass 'playlist-added'
+              return
           subscribers:
             SONGLIST_LOADING: 'setLoading'
         @$('#song-list-view').append songListView.$el
