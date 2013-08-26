@@ -1,5 +1,6 @@
-requirejs.config
-  paths:
+if location.hash.substring(1).split('&').indexOf('debug=true') >= 0
+  # debug mode
+  paths =
     text: ['//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.3/text']
     jQuery: ['//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery']
     jQueryUI: ['//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui']
@@ -9,6 +10,21 @@ requirejs.config
     Backpack: ['lib/backpack/Backpack-all']
     SoundCloud: ['//connect.soundcloud.com/sdk']
     SoundCloudAPI: ['//w.soundcloud.com/player/api']
+else
+  # release mode
+  paths =
+    text: ['//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.3/text.min']
+    jQuery: ['//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min']
+    jQueryUI: ['//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min']
+    jQueryUITouchPunch: ['//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min']
+    Underscore: ['//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min']
+    Backbone: ['//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min']
+    Backpack: ['lib/backpack/Backpack-all.min']
+    SoundCloud: ['//connect.soundcloud.com/sdk']
+    SoundCloudAPI: ['//w.soundcloud.com/player/api']
+
+requirejs.config
+  paths: paths
   shim:
     text:
       exports: 'text'
